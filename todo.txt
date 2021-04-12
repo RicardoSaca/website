@@ -1,0 +1,12 @@
+Project To-Do:
+
+1. Edit Nav Bar
+2. Polish home page
+    * Add personal picture (add to static/images)
+    * Add descriptions
+3. Add resume
+    * Add current resume into static/documents
+4. Add about me
+    * Consider timeline
+    * Think about how to market myself
+5. Ask about color scheme
