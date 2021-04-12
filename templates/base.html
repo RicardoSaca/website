@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
-        <title>{% block title %}{ endblock} Ricardo Saca</title>
+        <link rel="stylesheet" href="static/style.css">
+        <title>{% block title %}{% endblock %} - Ricardo Saca</title>
     </head>
     <body>
         <nav class="topnav">
@@ -13,7 +13,8 @@
             <a href="#Resume">Resume </a>
         </nav>
         <div>
-            {% block content %}{% endblock %}
+            {% block content %}
+            {% endblock %}
         </div>
         <footer>
             <p> Ricardo Saca <br>
