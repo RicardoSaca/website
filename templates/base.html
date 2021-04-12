@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Ricardo Saca</title>
+        <title>{% block title %}{ endblock} Ricardo Saca</title>
     </head>
     <body>
         <nav class="topnav">
@@ -13,8 +13,7 @@
             <a href="#Resume">Resume </a>
         </nav>
         <div>
-            <h2> Here there will be text </h2>
-            <p> More content</p>
+            {% block content %}{% endblock %}
         </div>
         <footer>
             <p> Ricardo Saca <br>
