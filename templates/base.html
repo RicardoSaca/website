@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- link to bootstrap css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- link to my css -->
         <link rel="stylesheet" href="static/style.css">
+
         <title>Ricardo Saca</title>
+
     </head>
     <body>
+        <!-- nav bar with bootstrap -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightgray;">
+            <a class="navbar-brand" href="#">Ricardo Saca</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+          </nav>
+    <!--
         <nav class="topnav">
             <a class="active" href="#Home">Home</a>
             <a href="#About">About</a>
@@ -12,14 +52,15 @@
             <a href="#Blog">Blog</a>
             <a href="#Resume">Resume </a>
         </nav>
-        <div>
+    -->
+        <div class="content">
             {% block content %}
             {% endblock %}
         </div>
         <footer>
             <p> Ricardo Saca <br>
-            <a href="mailto:rsacaher@friars.providence.edu">rsacaher@friars.providence.edu</a><br>
-            <a href="mailto:ricardosaca@gmail.com">ricardosaca@gmial.com</a>
+            <a href="mailto:rsacaher@friars.providence.edu">rsacaher@friars.providence.edu</a> | <a href="mailto:ricardosaca@gmail.com">ricardosaca@gmial.com</a>
+            
         </p>
         </footer>
     </body>
