@@ -27,6 +27,15 @@ body{
     color:white;
 }
 
+.genric-btn.primary-border {
+    color: #8490ff;
+    border: 1px solid #8490ff;
+    background: #8490ff;
+    margin-left: 15px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
 .content {
     margin: 10px;
     text-align: center;
