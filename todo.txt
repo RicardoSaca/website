@@ -10,3 +10,9 @@ Project To-Do:
     * Consider timeline
     * Think about how to market myself
 5. Ask about color scheme
+
+
+Reminder:
+set FLASK_APP=app.py
+export FLASK_ENV=development
+flask run
