@@ -17,3 +17,13 @@ Reminder:
 set FLASK_APP=app.py
 export FLASK_ENV=development
 flask run
+
+Virtual environment:
+pip install virtualenv
+py -m venv venv
+.\env\Scripts\activate
+
+py -m install -r requirements.txt
+py -m pip freeze
+
+deactivate
