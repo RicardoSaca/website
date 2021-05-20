@@ -1,11 +1,6 @@
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav{
+/* .topnav{
     overflow: hidden;
-    background-color: lightgray;
+    background-color: red;
 }
 
 .topnav a {
@@ -25,19 +20,81 @@ body{
 .topnav a.active{
     background-color: darkcyan;
     color:white;
+} */
+/* .content {
+    margin: 10px;
+    text-align: center;
+} */
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color:#f8f9fa;
 }
 
 .content {
-    margin: 10px;
+    background-color: r#f8f9faed;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    margin: 0px;
+    padding: 10px;
+
+    font-family:'Open Sans', sans-serif;
+}
+
+.name {
+    font-family:'Roboto',sans-serif;
+    margin-bottom: 2px;
+}
+
+.subtitle {
     text-align: center;
 }
-footer{
+
+.social-links a {
+    text-decoration: none;
+    padding: 4px;
+}
+
+.social-links a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left, .right {
+    margin: 5px;
+    max-width: 50%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left {
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-picture {
+    border-radius:20%
+}
+
+footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    justify-content: center;
     text-align: center;
     padding: 3px;
-    background-color: lightgray;
+    background-color: #f8f9fa;
     color: black;
 }

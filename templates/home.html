@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
+{% block title %} Home {% endblock %}
 {% block content %}
-<div class="banner-area">
+<div class="wrapper">
+    <div class="left">
+        <h1 class="name">Ricardo Saca</h1>
+        <img class="profile-picture" src="{{url_for('static',filename='images/RicardoSacaPic.jpeg')}}" alt="Picture of Ricardo Saca" width=200>
+        <h4 class="subtitle">curious critical thinker</h4>
+    </div>
 
-    <h5>Hi</h5>
-    <h1>I am Ricardo Saca,</h1>
-    <h3>A curious critical thinker interested in finance and data analytics.</h3>
-    <img src="{{url_for('static',filename='images/RicardoSacaPic.jpeg')}}" alt="Picture of Ricardo Saca" width=200>
-
-
+    <div class="right">
+        <p class="bio">
+            MBA candidate with an interest in finance and data anatytics. Thank you for visiting my website.
+        </p>
+        <ul class="social-links">
+            <li><a href="https://www.linkedin.com/in/ricardosaca/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/RicardoSaca" target="_blank">Github</a></li>
+            <li><a href="">Medium (in the works)</a></li>
+        </ul>
+    </div>
 </div>
-
 {% endblock %}
