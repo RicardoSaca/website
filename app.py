@@ -1,6 +1,8 @@
 from flask import Flask, render_template, url_for
+from flask_fontawesome import FontAwesome
 
 app = Flask(__name__)
+fa = FontAwesome(app)
 
 @app.route('/')
 def home():
@@ -18,5 +20,5 @@ def contact():
 def portfolio():
     return render_template("portfolio.html")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
