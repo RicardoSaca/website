@@ -1,10 +1,24 @@
 from flask import Flask, render_template, url_for, request, flash
+from flask.helpers import get_flashed_messages
 from flask_fontawesome import FontAwesome
 from forms import ContactForm
+from flask_mail import Message, Mail
 import pandas as pd
 
 app = Flask(__name__)
-app.secret_key = 'secretKey'
+
+app.secret_key = 'Ilov3GreenPastur$s!'
+
+mail_settings ={
+    "MAIL_SERVER" : "smtp.gmail.com",
+    "MAIL_PORT" : 465,
+    "MAIL_USE_SSL" : True,
+    "MAIL_USERNAME" : 'ricardosaca98@gmail.com',
+    "MAIL_PASSWORD" : '' #Figure out safety for password!!
+}
+app.config.update(mail_settings)
+mail = Mail(app)
+
 fa = FontAwesome(app)
 
 @app.route('/')
@@ -15,28 +29,27 @@ def home():
 def about():
     return render_template("about.html")
 
-# @app.route('/contactme', methods=["GET","POST"])
-# def contact():
-#     form = ContactForm()
-#     if request.method == 'POST':
-#         name = request.form["name"]
-#         email = request.form["email"]
-#         subject = request.form["subject"]
-#         message = request.form["message"]
-#         res = pd.DataFrame({'name':name, 'email':email, 'subject':subject, 'message':message}, index=[0])
-#         res.to_csv('./contactusMessage.csv')
-#         print("The data are saved!")
-#         return render_template('contact.html', form=form)
-#     else:
-#         return render_template("contact.html", form=form)
-
 @app.route('/contactme', methods=['GET','POST'])
 def contact():
     form = ContactForm()
 
     if request.method == 'POST':
-        return 'Form posted.'
+        if form.validate() == False:
+            print('False')
+            flash('All fields are required')
+            return render_template('contact.html', form=form)
+        else:
+            print('Hello!')
+            msg = Message(form.subject.data, sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
+            msg.body = """
+            From: %s <%s>
+            %s
+            """ % (form.name.data, form.email.data, form.message.data)
+            mail.send(msg)
+            return render_template('contact.html', success=True)
+
     elif request.method == 'GET':
+        print('gets')
         return  render_template('contact.html', form=form)
 
 @app.route('/portfolio')

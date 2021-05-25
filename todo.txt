@@ -11,6 +11,8 @@ Project To-Do:
     * Think about how to market myself
 5. Ask about color scheme
 6. Figure out flask development mode
+7. Contact page
+    * used https://code.tutsplus.com/tutorials/intro-to-flask-adding-a-contact-page--net-28982
 
 
 Reminder:

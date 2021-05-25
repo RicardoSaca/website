@@ -2,12 +2,11 @@ html, body {
     margin: 0;
     height: 100%;
     background-color:#f8f9fa;
-    overflow-y: auto;
 }
 
 .content {
+    display: flex;
     background-color:#f8f9faed;
-    display:flex;
     align-items: center;
     justify-content: center;
     height: 90%;
@@ -78,10 +77,20 @@ html, body {
 /*
 Contact
 */
+.success {
+    padding: 10px;
+    text-align: center;
+}
+
+.contact {
+    width: 80%;
+    flex-direction: row;
+    height: 100%;
+}
 
 .contact form {
     margin-top: 0px;
-    padding: 0px 30px;
+    padding: 0px 5px;
     align-items: stretch;
 }
 
@@ -94,8 +103,7 @@ Contact
 }
 
 .contact p {
-    margin: 0 0px 10px;
-    margin-left: 0px!important;
+    margin: 0px;
 }
 
 .contact label{
@@ -106,13 +114,13 @@ Contact
     width: 100%;
     border: none;
     border: 1px solid #dddddd78;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 5px;
+    border-radius: 2px;
 }
 
 .contact textarea#message {
     width: 100%;
-    height: 122px;
+    height: 80%;
     border 1px solid #dddddd78;
     border-radius: 4px;
     padding: 10px;
@@ -120,13 +128,19 @@ Contact
 
 .contact input#submit {
     color: white;
-    background: linear-gradient(0.25turn, #2a78ca, #71a1d4);
-    floar: right;
+    background: rgb(117, 194, 219);
+    float: right;
     border: none;
     border-radius: 4px;
-    padding: 15px 23px;
-    box-shadow: 0px 0px 4px 0px #000000087;
-    margin-top: 15px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 4px 0px #75747487;
+    margin-top: 5px;
+}
+
+.flash {
+    background-color: #FBB0B0;
+    padding: 10px;
+    width: 400px;
 }
 
 /*
@@ -141,4 +155,24 @@ footer {
     padding: 3px;
     background-color: #f8f9fa;
     color: black;
+}
+
+.footHome{
+    color: black;
+}
+
+.footHome:link {
+    text-decoration: none;
+}
+
+.footHome:visited {
+    text-decoration: none;
+}
+
+.footHome:hover {
+    text-decoration: none;
+    color:gray;
+}
+.footHome:active {
+    text-decoration: none;
 }
