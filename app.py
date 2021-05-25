@@ -42,8 +42,12 @@ def contact():
             print('Hello!')
             msg = Message(form.subject.data, sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
             msg.body = """
-            From: %s <%s>
+            %s has contacted you. 
+            You can reply to this email address <%s>
+            They said:
+
             %s
+
             """ % (form.name.data, form.email.data, form.message.data)
             mail.send(msg)
             return render_template('contact.html', success=True)
