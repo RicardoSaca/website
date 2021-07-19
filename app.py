@@ -12,9 +12,10 @@ app.secret_key = 'Ilov3GreenPastur$s!'
 mail_settings ={
     "MAIL_SERVER" : "smtp.gmail.com",
     "MAIL_PORT" : 465,
-    "MAIL_USE_SSL" : True,
     "MAIL_USERNAME" : 'ricardosaca98@gmail.com',
-    "MAIL_PASSWORD" : '' #Figure out safety for password!!
+    "MAIL_PASSWORD" : 'Blu3G!raff3', #Figure out safety for password!!
+    "MAIL_USE_TLS" : False,
+    "MAIL_USE_SSL" : True,
 }
 app.config.update(mail_settings)
 mail = Mail(app)
