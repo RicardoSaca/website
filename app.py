@@ -13,7 +13,7 @@ mail_settings ={
     "MAIL_SERVER" : "smtp.gmail.com",
     "MAIL_PORT" : 465,
     "MAIL_USERNAME" : 'ricardosaca98@gmail.com',
-    "MAIL_PASSWORD" : 'Blu3G!raff3', #Figure out safety for password!!
+    "MAIL_PASSWORD" : '', #Figure out safety for password!!
     "MAIL_USE_TLS" : False,
     "MAIL_USE_SSL" : True,
 }
