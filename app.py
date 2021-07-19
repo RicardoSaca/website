@@ -4,16 +4,21 @@ from flask_fontawesome import FontAwesome
 from forms import ContactForm
 from flask_mail import Message, Mail
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-app.secret_key = 'Ilov3GreenPastur$s!'
+app.secret_key = os.getenv("SECRET_KEY")
+
+#Gather sensitive information
+MAIL_USER = os.getenv("MAIL_USER")
+PASSWORD = os.getenv("PASSWORD")
 
 mail_settings ={
     "MAIL_SERVER" : "smtp.gmail.com",
     "MAIL_PORT" : 465,
-    "MAIL_USERNAME" : 'ricardosaca98@gmail.com',
-    "MAIL_PASSWORD" : '', #Figure out safety for password!!
+    "MAIL_USERNAME" : MAIL_USER,
+    "MAIL_PASSWORD" : PASSWORD, #Figure out safety for password!!
     "MAIL_USE_TLS" : False,
     "MAIL_USE_SSL" : True,
 }
