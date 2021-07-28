@@ -3,54 +3,57 @@
 {% block title %} Contact Me {% endblock %}
 
 {% block content %}
-<div class="contact">
-    <h3>Contact me</h3>
+<div class="row justify-content-center mt-5">
+    <div class="col-sm-6 col-11 text-center contact">
+        <h3>Contact me</h3>
+        <h6>Please fill out this form to contact me.</h6>
 
-    {% if success %}
-    <p class='success'>Thank you for reaching out! I'll get back to you shortly.</p>
-    {% else %}
-        {% for message in form.name.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% for message in form.email.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% for message in form.subject.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% for message in form.message.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
+        {% if success %}
+        <p class='success'>Thank you for reaching out! I'll get back to you shortly.</p>
+        {% else %}
+            {% for message in form.name.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% for message in form.email.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% for message in form.subject.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% for message in form.message.errors %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
 
-        <form action="{{ url_for('contact') }}" method=post>
-            <div>
-                {{ form.hidden_tag() }}
-                <!-- name form -->
-                <p>
-                    {{ form.name.label }} <br>
-                    {{ form.name(placeholder='Your name')}}
-                </p>
-                <!-- email form -->
-                <p>
-                    {{ form.email.label }} <br>
-                    {{ form.email(placeholder='Your e-mail ')}}
-                </p>
-                <!-- Subject of your request -->
-                <p>
-                    {{ form.subject.label }} <br>
-                    {{ form.subject(placeholder='Your subject')}}
-                </p>
-                <!-- Content of your request -->
-                <p>
-                    {{ form.message.label }} <br>
-                    {{ form.message(placeholder='write your request...')}}
-                </p>
-                <!-- Submit button -->
-                <p>
-                    {{ form.submit }}
-                </p>
-            </div>
-        </form>
-    {% endif %}
+            <form action="{{ url_for('contact') }}" method=post>
+                <div>
+                    {{ form.hidden_tag() }}
+                    <!-- name form -->
+                    <p>
+                        {{ form.name.label }} <br>
+                        {{ form.name(placeholder='Your name')}}
+                    </p>
+                    <!-- email form -->
+                    <p>
+                        {{ form.email.label }} <br>
+                        {{ form.email(placeholder='Your e-mail ')}}
+                    </p>
+                    <!-- Subject of your request -->
+                    <p>
+                        {{ form.subject.label }} <br>
+                        {{ form.subject(placeholder='Your subject')}}
+                    </p>
+                    <!-- Content of your request -->
+                    <p>
+                        {{ form.message.label }} <br>
+                        {{ form.message(placeholder='write your request...')}}
+                    </p>
+                    <!-- Submit button -->
+                    <p>
+                        {{ form.submit }}
+                    </p>
+                </div>
+            </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
