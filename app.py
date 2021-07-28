@@ -14,13 +14,15 @@ config = ConfigParser()
 config.read('config/keys_config.cfg', encoding=None)
 
 #Gather sensitive information
-# SECRET_KEY = config.get('app', 'secret_key')
-# MAIL_USER = config.get('gmail', 'user')
-# PASSWORD = config.get('gmail', 'password')
+    #From Heroku
 SECRET_KEY = os.environ.get('secret_key')
 MAIL_USER = os.environ.get('EMAIL_USER')
 PASSWORD = os.environ.get('EMAIL_PASSWORD')
-print (f'the secret key is {SECRET_KEY}')
+    #From local
+if (SECRET_KEY is None) & (MAIL_USER is None) & (PASSWORD is None):
+    SECRET_KEY = config.get('app', 'secret_key')
+    MAIL_USER = config.get('gmail', 'user')
+    PASSWORD = config.get('gmail', 'password')
 
 
 app.secret_key = SECRET_KEY
@@ -80,6 +82,10 @@ def portfolio():
 @app.route('/bookshelf')
 def bookshelf():
     return render_template("bookshelf.html")
+
+@app.route('/comingsoon')
+def comingsoon():
+    return render_template("comingsoon.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

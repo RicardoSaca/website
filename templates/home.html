@@ -5,7 +5,7 @@
 {% block content %}
 
     <div class="row justify-content-center bio">
-        <div class="col-sm-5 text-center my-auto">
+        <div class="col-sm-5 col-11 text-center my-auto">
             <span class="align-middle">
                 <h6>I am</h6>
                 <h1><b>Ricardo Saca</b></h1>
@@ -15,13 +15,13 @@
                 </p>
             </span>
         </div>
-        <div class='col-sm-5'>
+        <div class='col-sm-5 col-11'>
             <img class="img-fluid profile"
                 src="{{url_for('static',filename='img/Ricardo_Portfolio.jpeg')}}"
                 alt="Picture of Ricardo Saca">
         </div>
         <br/>
-        <hr class="d-sm-none"/>
+        <hr class="d-sm-none d-none"/>
     </div>
 
     <div class="row justify-content-center latest">
@@ -29,14 +29,14 @@
         <div class='col-sm-12 text-center'>
             <h2>My Latest Projects</h2>
         </div>
-        <div class='project col-sm-5 align-self-center'>
+        <div class='project col-sm-5 col-10 align-self-center'>
             <h4><a href="https://github.com/RicardoSaca/scrapper" target='_blank'>Linkedin Webscrapper</a></h4>
             <h6>Ricardo, June 2021</h6>
             <p>In this project I created a webscrapper to extract data from Linkedin to make buyer personas</p>
             <br>
         </div>
-        <div class='project col-sm-5'>
-            <h4><a href="#" >Stock Visualizer</a></h4>
+        <div class='project col-sm-5 col-10 align-self-center'>
+            <h4><a href="{{ url_for('comingsoon')}}" >Stock Visualizer</a></h4>
             <h6>Ricardo, Coming soon.</h6>
             <p>A jupyternotebook to practice stock data extraction and visualization, with some basic charting analysis</p>
             <br>
