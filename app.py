@@ -5,6 +5,7 @@ from forms import ContactForm
 from flask_mail import Message, Mail
 # import pandas as pd
 from configparser import ConfigParser
+import os
 
 app = Flask(__name__)
 
@@ -13,9 +14,13 @@ config = ConfigParser()
 config.read('config/keys_config.cfg', encoding=None)
 
 #Gather sensitive information
-SECRET_KEY = config.get('app', 'secret_key')
-MAIL_USER = config.get('gmail', 'user')
-PASSWORD = config.get('gmail', 'password')
+# SECRET_KEY = config.get('app', 'secret_key')
+# MAIL_USER = config.get('gmail', 'user')
+# PASSWORD = config.get('gmail', 'password')
+SECRET_KEY = os.environ.get('secret_key')
+MAIL_USER = os.environ.get('EMAIL_USER')
+PASSWORD = os.environ.get('EMAIL_PASSWORD')
+print (f'the secret key is {SECRET_KEY}')
 
 
 app.secret_key = SECRET_KEY
@@ -76,5 +81,5 @@ def portfolio():
 def bookshelf():
     return render_template("bookshelf.html")
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
