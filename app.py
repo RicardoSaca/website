@@ -1,9 +1,9 @@
 from flask import Flask, render_template, url_for, request, flash
 from flask.helpers import get_flashed_messages
-from flask_fontawesome import FontAwesome
+# from flask_fontawesome import FontAwesome
 from forms import ContactForm
 from flask_mail import Message, Mail
-import pandas as pd
+# import pandas as pd
 from configparser import ConfigParser
 
 app = Flask(__name__)
@@ -31,7 +31,7 @@ mail_settings ={
 app.config.update(mail_settings)
 mail = Mail(app)
 
-fa = FontAwesome(app)
+# fa = FontAwesome(app)
 
 @app.route('/')
 def home():
@@ -54,7 +54,7 @@ def contact():
             print('Hello!')
             msg = Message(form.subject.data, sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
             msg.body = """
-            %s has contacted you. 
+            %s has contacted you.
             You can reply to this email address <%s>
             They said:
 
