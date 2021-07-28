@@ -4,15 +4,21 @@ from flask_fontawesome import FontAwesome
 from forms import ContactForm
 from flask_mail import Message, Mail
 import pandas as pd
-import os
+from configparser import ConfigParser
 
 app = Flask(__name__)
 
-app.secret_key = os.getenv("SECRET_KEY")
+#setup config parser to read sensitive information
+config = ConfigParser()
+config.read('config/keys_config.cfg', encoding=None)
 
 #Gather sensitive information
-MAIL_USER = os.getenv("MAIL_USER")
-PASSWORD = os.getenv("PASSWORD")
+SECRET_KEY = config.get('app', 'secret_key')
+MAIL_USER = config.get('gmail', 'user')
+PASSWORD = config.get('gmail', 'password')
+
+
+app.secret_key = SECRET_KEY
 
 mail_settings ={
     "MAIL_SERVER" : "smtp.gmail.com",
@@ -65,6 +71,10 @@ def contact():
 @app.route('/portfolio')
 def portfolio():
     return render_template("portfolio.html")
+
+@app.route('/bookshelf')
+def bookshelf():
+    return render_template("bookshelf.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

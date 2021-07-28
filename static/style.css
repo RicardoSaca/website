@@ -1,77 +1,39 @@
-html, body {
-    margin: 0;
-    height: 100%;
-    background-color:#f8f9fa;
-}
-
-.content {
-    display: flex;
-    background-color:#f8f9faed;
-    align-items: center;
-    justify-content: center;
-    height: 90%;
-    margin: 0px;
-    padding: 10px;
+html {
     font-family:'Open Sans', sans-serif;
 }
 
-.name {
-    font-family:'Roboto',sans-serif;
-    margin-bottom: 2px;
+body{
+    background-color: lightgrey;
+    overflow: auto;
 }
 
-.subtitle {
-    text-align: center;
+/*
+Home
+*/
+
+.bio{
+    padding:5%;
 }
 
-.social-links a {
-    text-decoration: none;
-    padding: 4px;
-}
-
-.social-links a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.wrapper {
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
-.left, .right {
-    margin: 5px;
-    max-width: 50%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.left {
+.profile{
     align-items: center;
-    justify-content: center;
+    width: 115%;
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }
 
-.profile-picture {
-    border-radius:20%
-}
+/*
+Projects
+*/
 
-
-.fa {
-    padding: 20px;
-    font-size: 30px;
+.project{
+    margin: 2%;
+    background-color:lightblue;
+    border: 1px solid black;
+    padding: 5px;
     text-align: center;
-    text-decoration: none;
-    margin: 5px,2px;
-    background: transparent;
-    color: gray;
-}
-
-.fa:hover {
-    opacity: 0.7;
-    color: black;
+    justify-content: center;
 }
 
 /*
@@ -146,13 +108,14 @@ Contact
 /*
 Footer
 */
+
 footer {
-    position: fixed;
+    /* position: relative;
     left: 0;
     bottom: 0;
-    width: 100%;
+    width: 100%; */
     text-align: center;
-    padding: 3px;
+    /* padding: 3px; */
     background-color: #f8f9fa;
     color: black;
 }
@@ -175,4 +138,19 @@ footer {
 }
 .footHome:active {
     text-decoration: none;
+}
+
+.fa {
+    padding: 10px 15px 0px ;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px -2px;
+    background: transparent;
+    color: gray;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: black;
 }
