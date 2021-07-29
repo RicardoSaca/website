@@ -54,25 +54,25 @@ def contact():
 
     if request.method == 'POST':
         if form.validate() == False:
-            print('False')
             flash('All fields are required')
             return render_template('contact.html', form=form)
         else:
-            print('Hello!')
-            msg = Message(f'Message from {form.name.data}', sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
-            msg.body = """
-            %s has contacted you.
-            You can reply to this email address <%s>
-            They said:
+            try:
+                msg = Message(f'Message from {form.name.data}', sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
+                msg.body = """
+                %s has contacted you.
+                You can reply to this email address <%s>
+                They said:
 
-            %s
+                %s
 
-            """ % (form.name.data, form.email.data, form.message.data)
-            mail.send(msg)
-            return render_template('contact.html', success=True)
+                """ % (form.name.data, form.email.data, form.message.data)
+                mail.send(msg)
+                return render_template('contact.html', success=True)
+            except:
+                return render_template('comingsoon.html')
 
     elif request.method == 'GET':
-        print('gets')
         return  render_template('contact.html', form=form)
 
 @app.route('/portfolio')
