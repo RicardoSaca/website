@@ -70,7 +70,7 @@ def contact():
                 mail.send(msg)
                 return render_template('contact.html', success=True)
             except:
-                return render_template('comingsoon.html')
+                return render_template('error.html')
 
     elif request.method == 'GET':
         return  render_template('contact.html', form=form)
@@ -86,6 +86,10 @@ def bookshelf():
 @app.route('/comingsoon')
 def comingsoon():
     return render_template("comingsoon.html")
+
+@app.route('/error')
+def error():
+    return render_template("error.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

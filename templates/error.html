@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Coming soon {% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center bio">
+        <div class="col-sm-10  text-center align-self-center">
+            <h1> There seemed to be an error.</h1>
+            <p>Feel free to contact me on these other mediums: </p>
+            <p>
+                <div class="container">
+                    <span class="text-muted">
+                    <p>
+                        <a href="mailto:ricardosaca@gmail.com" class="fa fa-envelope-o" targe="_blank"></a>
+                        <a href="https://www.linkedin.com/in/ricardosaca/" class="fa fa-linkedin"></a>
+                        <a class="footHome" href="{{ url_for('home') }}">Ricardo Saca</a>
+                        <a href="https://github.com/RicardoSaca" class="fa fa-github" ></a>
+                        <a href="https://twitter.com/RicardoSaca98" class="fa fa-twitter"></a>
+                    </p>
+                    </span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+{% endblock %}
