@@ -46,7 +46,7 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    return render_template("comingsoon.html")
 
 @app.route('/contactme', methods=['GET','POST'])
 def contact():
@@ -77,7 +77,7 @@ def contact():
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template("portfolio.html")
+    return render_template("comingsoon.html")
 
 @app.route('/bookshelf')
 def bookshelf():

@@ -3,14 +3,54 @@
 {% block title %} About {% endblock %}
 
 {% block content %}
-<div class="content">
-
-    <h1>My Personal Bookshelf</h1>
-
-    <h2>Books I have read</h2>
-
-    <h2>Books I want to read</h2>
+<div class="row justify-content-center bio">
+    <div class="col-sm-10 text-center">
+        <h1>My Personal Bookshelf</h1>
+        <p>
+            Here are some of the books I have read and gained invaluable insight from.
+            There is also a wishlist of the books I want to read soon.
+            I am currently attempting to code this - please bare with me :)
+        </p>
+    </div>
+</div>
+<div class="row justify-content-left mt-3">
+    <div class="col-sm-12 text-center">
+        <h2>To Read</h2>
+    </div>
+    <ul class="list">
+        <li class="item">
+            <div>
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span class="title">Sapiens, Yuval Noah Harari</span>
+            </div>
+        </li>
+        <li class="item">
+            <div>
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span class="title">Book title, Author</span>
+            </div>
+        </li>
+        <li class="item">
+            <div>
+                <i  class="fa fa-star" aria-hidden="true"></i>
+                <span class="title">Book title, Author</span>
+            </div>
+        </li>
+    </ul>
 
 </div>
+<div class="row justify-content-center">
+    <div class="col-sm-12 text-center">
+        <h2>Read in 2021</h2>
+    </div>
+    <ul class="list">
+        <li class="item">
+            <div>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <span class="title">What the Dog Saw, Malcom Gladwell</span>
+            </div>
+        </li>
+    </ul>
 
+</div>
 {% endblock %}
