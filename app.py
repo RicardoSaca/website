@@ -59,7 +59,7 @@ def contact():
             return render_template('contact.html', form=form)
         else:
             print('Hello!')
-            msg = Message(form.subject.data, sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
+            msg = Message(f'Message from {form.name.data}', sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
             msg.body = """
             %s has contacted you.
             You can reply to this email address <%s>

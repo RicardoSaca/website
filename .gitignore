@@ -2,4 +2,3 @@ portfolio/
 __pycache__/
 .vscode/
 config/
-static/.DS_Store
