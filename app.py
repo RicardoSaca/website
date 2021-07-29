@@ -68,8 +68,14 @@ def contact():
 
                 """ % (form.name.data, form.email.data, form.message.data)
                 mail.send(msg)
+                print("success! email sent")
                 return render_template('contact.html', success=True)
             except:
+                import sys
+                e = sys.exc_info()[0]
+
+                print("error! email failed to send")
+                print(e)
                 return render_template('error.html')
 
     elif request.method == 'GET':
