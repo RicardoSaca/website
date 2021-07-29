@@ -18,14 +18,12 @@ config.read('config/keys_config.cfg', encoding=None)
 SECRET_KEY = os.environ.get('secret_key')
 MAIL_USER = os.environ.get('EMAIL_USERNAME')
 PASSWORD = os.environ.get('EMAIL_PASSWORD')
-print(MAIL_USER, PASSWORD)
     #From local
 if (SECRET_KEY is None) & (MAIL_USER is None) & (PASSWORD is None):
     print('changing from none')
     SECRET_KEY = config.get('app', 'secret_key')
     MAIL_USER = config.get('gmail', 'user')
     PASSWORD = config.get('gmail', 'password')
-    print(MAIL_USER, PASSWORD)
 
 
 app.secret_key = SECRET_KEY
