@@ -25,6 +25,34 @@ Home
 }
 
 /*
+About
+*/
+
+.about{
+    padding:5%;
+    width: auto;
+    background-image: url('/static/img/stage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.list-inline{
+    text-align: center;
+    list-style: none;
+}
+
+.sublist{
+    list-style-type: none;
+    list-style-position: inside;
+    padding-left: 0;
+    text-align:center;
+}
+
+/* .p-2{
+    border: 1px solid grey;
+} */
+
+/*
 Projects
 */
 

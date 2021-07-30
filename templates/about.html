@@ -3,10 +3,135 @@
 {% block title %} About {% endblock %}
 
 {% block content %}
-<div class="content">
-
-    <h1>My about page</h1>
-
+<div class="row justify-content-center bio">
+    <div class="col-sm-5 col-11 text-center my-auto">
+        <span class="align-middle">
+            <h1>About me</h1>
+            <!-- short bio -->
+            <p>
+                I am <strong>Ricaro Saca</strong>, a <i>curious critical thinker</i> with a
+                passion for learning and applying data analytics into the
+                complicated world we live in.
+                I have taught myself how to code via college courses, following medium tutorials, trial and error, and lots of googling/stackoverflow.
+                Below I list some of my education journey, memorable experiences, and skills I have acquired.
+            </p>
+            <p>
+                I am still develping this section. There is more to come. For more info here is <a href="{{ url_for('static', filename='documents/Ricardo_Saca.pdf')}}">my Resume</a>.
+            </p>
+        </span>
+    </div>
+    <div class='col-sm-5 col-11'>
+            <img class="img-fluid profile"
+                src="{{url_for('static',filename='img/grad.jpg')}}"
+                alt="Picture of Ricardo Saca">
+    </div>
+    </div>
+    <br>
+    <hr class="d-sm-none d-none"/>
 </div>
 
+<div class="row justify-content-center mt-2 mb-4">
+    <div class="col-11">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Education
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
+                    <div class="accordion-body">
+                        <ul class="list-inline">
+                            <li>
+                                <b>MBA with a certificate in Business Analytics</b>
+                                <br><i>Providence College</i>, 2021. (GPA: 3.91/4.00)
+                            </li>
+                            <li>
+                                <b>Bachelor's degree in Finance with a minor in Computer Science</b>
+                                <br><i>Providence College</i>, 2020. (GPA: 3.63/4.00)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Experience
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+                    <div class="accordion-body">
+                        <ul class="list-inline">
+                            <li>
+                                <b>Blue Cross Blue Shield Consulting Project</b>
+                                <br><i>Providence College</i> Spring 2021.
+                                <p>In this project we used various data analytics techniques to analyze ten data set of healthcare customer data with the goal of identifying patiens who would be best suited to utilize a smartwatch.</p>
+                            </li>
+                            <li>
+                                <b>Citizens Bank Consulting Project</b>
+                                <br><i>Providence College</i> Fall 2020.
+                                <p>Utilized data analytics techniques on human resources data to identify firm's top talent. Suggested strategies to retain top talent.
+                                    <a href="https://business.providence.edu/2021/01/22/pc-business-analytics-class-presents-to-citizens-on-real-world-project/">News Story.</a>
+                                </p>
+                            </li>
+                            <li>
+                                <b>MBA 651 - Marketing Management</b>
+                                <br><i>Providence College</i> Spring 2021.
+                                <p>Class taught by <a href="https://www.linkedin.com/in/markdefanti/">Mark Defanti</a>. This class was one of the hardest classes I have taken, however it taught me how to think and apply class concept. It also challenged me beyond my limits to think critically in our Emerging Career Assignemnt.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header justify-content-center" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Skills
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                    <ul class="list-inline">
+                        <div class="accordion-body">
+                            <div class="d-flex flex-row  align-content-between flex-wrap justify-content-around">
+                                <div class="p-2 m-2 d-inline-flex">
+                                    <li><b>Languages:</b>
+                                        <ul class="sublist">
+                                            <li>Spanish - Native</li>
+                                            <li>English - Fluent</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                                <div class="p-2 m-2 d-inline-flex">
+                                    <li><b>Programming/Software:</b>
+                                        <ul class="sublist">
+                                            <li>Excel (5yrs)</li>
+                                            <li>Python (>3yrs)</li>
+                                            <li>SQL (3yrs)</li>
+                                            <li>Tableau (2yrs) </li>
+                                            <li>HTML/CSS (2yrs)</li>
+                                            <li>Git (~1yr)</li>
+                                            <li>Heroku (~1yr)</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                                <div class="p-2 m-2 d-inline-flex">
+                                    <li><b>Business Concepts:</b>
+                                        <ul class="sublist">
+                                            <li>Financial Modeling</li>
+                                            <li>Management Strategy</li>
+                                            <li>Financial Statements</li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 {% endblock %}
