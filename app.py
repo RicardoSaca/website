@@ -75,7 +75,7 @@ def contact():
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template("comingsoon.html")
+    return render_template("portfolio.html")
 
 @app.route('/bookshelf')
 def bookshelf():

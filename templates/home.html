@@ -29,17 +29,23 @@
         <div class='col-sm-12 text-center'>
             <h2 class="mt-3">My Latest<a href="{{ url_for('portfolio')}}" style="text-decoration: none; color:black;"> Projects</a></h2>
         </div>
-        <div class='project col-sm-5 col-10 align-self-center'>
-            <h4><a class="project_url" href="https://github.com/RicardoSaca/scrapper" target='_blank'>Linkedin Webscrapper</a></h4>
-            <h6>Ricardo, June 2021</h6>
-            <p>In this project I created a webscrapper to extract data from Linkedin to develop buyer personas</p>
-            <br>
-        </div>
-        <div class='project col-sm-5 col-10 align-self-center'>
-            <h4><a class="project_url" href="{{ url_for('comingsoon')}}" >Stock Visualizer</a></h4>
-            <h6>Ricardo, Coming soon.</h6>
-            <p>A jupyternotebook to practice stock data extraction and visualization, with some basic charting analysis</p>
-            <br>
+        <div class="d-flex flex-row align-content-between flex-wrap justify-content-around mt-4">
+            <div class="card my-2" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Linkedin Web Scraper</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Ricardo Saca, June 2021</h6>
+                    <p class="card-text">In this project I created a webscrapper to extract data from Linkedin to develop buyer personas</p>
+                    <a href="https://github.com/RicardoSaca/scraper" target="_blank" class="card-link">Code</a>
+                </div>
+            </div>
+            <div class="card my-2" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Stock Visualizer</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Ricardo, Coming Soon</h6>
+                    <p class="card-text">A jupyternotebook to practice stock data extraction and visualization, with some basic charting analysis</p>
+                    <a href="{{ url_for('comingsoon')}}" class="card-link">Coming Soon</a>
+                </div>
+            </div>
         </div>
         <!-- <div class='project col-sm-5'>
             <h4><a href="#" target='_blank'>Title</a></h4>
