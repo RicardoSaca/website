@@ -13,44 +13,97 @@
         </p>
     </div>
 </div>
-<div class="row justify-content-left mt-3">
-    <div class="col-sm-12 text-center">
-        <h2>To Read</h2>
-    </div>
-    <ul class="list">
-        <li class="item">
-            <div>
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span class="title">Sapiens, Yuval Noah Harari</span>
-            </div>
-        </li>
-        <li class="item">
-            <div>
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span class="title">Book title, Author</span>
-            </div>
-        </li>
-        <li class="item">
-            <div>
-                <i  class="fa fa-star" aria-hidden="true"></i>
-                <span class="title">Book title, Author</span>
-            </div>
-        </li>
-    </ul>
 
+<div class="row justify-content-center mt-3">
+    <div class="col-sm-8 text-center">
+        <h2>Reading</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i><span class="title">The Tipping Point</span>, Malcom Gladwell
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i><span class="title">Meditations</span>, Marcus Aurelius
+                </div>
+            </li>
+            <li class="list-group-item"></li>
+            <!-- <li class="list-group-item"></li> -->
+        </ul>
+    </div>
 </div>
-<div class="row justify-content-center">
-    <div class="col-sm-12 text-center">
-        <h2>Read in 2021</h2>
-    </div>
-    <ul class="list">
-        <li class="item">
-            <div>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <span class="title">What the Dog Saw, Malcom Gladwell</span>
-            </div>
-        </li>
-    </ul>
 
+<div class="row justify-content-center mt-3">
+    <div class="col-sm-8 text-center">
+        <h2>Wishlist</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-book" aria-hidden="true"></i><span class="title">Sapiens</span>, Yuval Noah Harari
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-book" aria-hidden="true"></i><span class="title">The McKinsey Way</span>, Ethan Raisel
+                </div>
+            </li>
+            <li class="list-group-item"></li>
+            <!-- <li class="list-group-item"></li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-8 text-center">
+        <h2>2021</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-star" aria-hidden="true"></i><span class="title">Think Fast and Slow</span>, Daniel Kahneman
+                    <p>Think Fast and Slow is a fascinating book about the human heuristics and biases. It was a brilliant read which I truly recommend to all. This book has the potential to change one's perspective in the way we consume information and make decisions.</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-star" aria-hidden="true"></i><span class="title">What the Dog Saw</span>, Malcom Gladwell
+                </div>
+                <p>
+                    All of the short stories in What the Dog Saw are brilliant way to allow the reader to place themselves in the perspective of others. Gladwell's writing style is also a joy.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-book" aria-hidden="true"></i><span class="title">The Art of Statics</span>, David Speiglhalter
+                </div>
+                <p>
+                    Here Speiglhalter gives beautiful examples of the power of statistics, as well as explaining concepts. I was very excited to read this book since I always felt lacking when it came to statistics.
+                </p>
+            </li>
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
+
+<!-- icons
+    fa fa-book : book
+    fa fa-star : favorite
+    fa fa-hourglass : reading
+-->
+<!-- Format
+<div class="row justify-content-center">
+    <div class="col-sm-8 text-center">
+        <h2>{{ Year }}</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <i class="fa fa-{{ type }}" aria-hidden="true"></i><span class="title">{{ Title }}</span>, {{ Author }}
+                </div>
+                <p>{{ summary }} </p>
+            </li>
+ss="list-group-item"></li>
+        </ul>
+    </div>
+</div>
+-->
