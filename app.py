@@ -1,9 +1,7 @@
 from flask import Flask, render_template, url_for, request, flash
 from flask.helpers import get_flashed_messages
-# from flask_fontawesome import FontAwesome
 from forms import ContactForm
 from flask_mail import Message, Mail
-# import pandas as pd
 from configparser import ConfigParser
 import os
 
@@ -24,14 +22,12 @@ mail_settings ={
     "MAIL_SERVER" : "smtp.gmail.com",
     "MAIL_PORT" : 465,
     "MAIL_USERNAME" : MAIL_USER,
-    "MAIL_PASSWORD" : PASSWORD, #Figure out safety for password!!
+    "MAIL_PASSWORD" : PASSWORD,
     "MAIL_USE_TLS" : False,
     "MAIL_USE_SSL" : True,
 }
 app.config.update(mail_settings)
 mail = Mail(app)
-
-# fa = FontAwesome(app)
 
 @app.route('/')
 def home():
@@ -90,4 +86,4 @@ def error():
     return render_template("error.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
