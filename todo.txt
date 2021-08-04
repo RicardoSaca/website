@@ -1,31 +1,23 @@
 Project To-Do:
 
-1. Polish Nav Bar
-2. Polish home page
-    * Add personal picture (add to static/images)
-    * Add descriptions
-3. Add resume
-    * edit button to look good
-4. Add about me content
-    * Consider timeline
-    * Think about how to market myself
-5. Ask about color scheme
-6. Figure out flask development mode
-7. Contact page
+1. Ask about color scheme
+2. Figure out data bases
+
+
+Contact page:
     * used https://code.tutsplus.com/tutorials/intro-to-flask-adding-a-contact-page--net-28982
 
 
 Reminder:
-set FLASK_APP=app.py
-export FLASK_ENV=development
-flask run
+app.run(debug=True)
+python app.py
 
 Virtual environment:
 pip install virtualenv
 py -m venv venv
-.\env\Scripts\activate
+source portfolio/bin/activate
 
 py -m install -r requirements.txt
-py -m pip freeze
+py -m pip freeze > requirements.txt
 
 deactivate
