@@ -132,6 +132,35 @@ Contact
     padding: 10px;
 }
 
+
+/*
+Admin
+*/
+
+
+.login {
+    width: 80%;
+    flex-direction: row;
+    height: 100%;
+}
+
+.login form {
+    margin-top: 0px;
+    padding: 0px 5px;
+    align-items: stretch;
+}
+
+.login input#submit {
+    color: white;
+    background: #6c757d;
+    float: center;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 4px 0px #75747487;
+    margin-top: 5px;
+}
+
 /*
 Footer
 */

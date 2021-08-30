@@ -25,26 +25,26 @@
         <!-- nav bar with bootstrap -->
         <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-secondary">
           <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('home') }}">Ricardo Saca</a>
+            <a class="navbar-brand" href="{{ url_for('main.home') }}">Ricardo Saca</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                  <a class="nav-link" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                  <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href=" {{ url_for('portfolio') }}">Portfolio</a>
+                  <a class="nav-link" href=" {{ url_for('main.portfolio') }}">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('contact') }}">Contact Me</a>
+                  <a class="nav-link" href="{{ url_for('main.contact') }}">Contact Me</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('bookshelf') }}">Bookshelf</a>
+                  <a class="nav-link" href="{{ url_for('main.bookshelf') }}">Bookshelf</a>
                 </li>
               </ul>
               <span>
@@ -71,7 +71,7 @@
             <p>
               <a href="mailto:ricardosaca@gmail.com" class="fa fa-envelope-o" targe="_blank"></a>
               <a href="https://www.linkedin.com/in/ricardosaca/" class="fa fa-linkedin"></a>
-              <a class="footHome" href="{{ url_for('home') }}">Ricardo Saca</a>
+              <a class="footHome" href="{{ url_for('main.home') }}">Ricardo Saca</a>
               <a href="https://github.com/RicardoSaca" class="fa fa-github" ></a>
               <a href="https://twitter.com/RicardoSaca98" class="fa fa-twitter"></a>
               </p>

@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-sm-6 col-11 justify-content-center contact form">
+    <div class="col-sm-6 col-11 justify-content-center contact">
         {% if success %}
         <p class='success'>Thank you for reaching out! I'll get back to you shortly.</p>
         {% else %}
@@ -23,7 +23,7 @@
             {% for message in form.message.errors %}
                 <div class="flash col-sm-12 col-12 text-center mt-3">{{ message }}</div>
         {% endfor %}
-        <form action="{{ url_for('contact') }}" method=post>
+        <form action="{{ url_for('main.contact') }}" method=post>
             <div>
                 {{ form.hidden_tag() }}
                 <!-- name form -->

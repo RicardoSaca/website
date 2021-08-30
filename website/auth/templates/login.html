@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Admin Login {% endblock %}
+{% block content %}
+<div class= "row justify-content-center bio">
+    <div class="col-sm-6 col-11 text-center contact">
+        <h1>Admin Login</h1>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-6 col-11 text-center pt-4 login">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32, placeholder='Username') }}
+                {% for error in form.username.errors %}
+                <span style="color:red";>[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32, placeholder='Password') }}
+                {% for error in form.password.errors %}
+                <span style="color:red";>[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.remember_me(placeholder="Remeber me?") }} {{ form.remember_me.label }}</p>
+            <p>{{ form.submit() }}</p>
+    </div>
+</div>
+
+{% endblock %}

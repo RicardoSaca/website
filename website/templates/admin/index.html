@@ -1,0 +1,10 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h1> Admin view for ricardosaca.herokuapp.com</h1>
+<p>Welcome {{ current_user.username }}</p>
+<ul>
+    <li><a href="{{url_for('main.home')}}">Home</a></li>
+    <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+</ul>
+{% endblock body %}
