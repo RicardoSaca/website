@@ -9,7 +9,7 @@ main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/')
 def home():
-    latest_projects = Project.query.order_by(Project.pro_date.asc()).limit(2).all()
+    latest_projects = Project.query.order_by(Project.pro_date.desc()).limit(2).all()
     for project in latest_projects:
         print(project.pro_name)
     return render_template("home.html", latest_projects=latest_projects)
