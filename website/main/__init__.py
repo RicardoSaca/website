@@ -2,13 +2,17 @@ from flask import Blueprint, render_template, request, flash
 from flask_mail import Message
 from website import mail
 
+from website.models import Book, Project
 from website.forms import ContactForm
 
 main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/')
 def home():
-    return render_template("home.html")
+    latest_projects = Project.query.order_by(Project.pro_date.asc()).limit(2).all()
+    for project in latest_projects:
+        print(project.pro_name)
+    return render_template("home.html", latest_projects=latest_projects)
 
 @main.route('/about')
 def about():
@@ -48,11 +52,19 @@ def contact():
 
 @main.route('/portfolio')
 def portfolio():
-    return render_template("portfolio.html")
+    projects = Project.query.order_by(Project.pro_date.desc()).all()
+    return render_template("portfolio.html", projects=projects)
+
+@main.route('/project/<projectid>')
+def project(projectid):
+    pro = Project.query.get(projectid)
+    print(pro.pro_embed)
+    return render_template("project.html", pro=pro)
 
 @main.route('/bookshelf')
 def bookshelf():
-    return render_template("bookshelf.html")
+    books = Book.query.all()
+    return render_template("bookshelf.html", books=books)
 
 @main.route('/comingsoon')
 def comingsoon():

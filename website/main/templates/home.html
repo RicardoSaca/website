@@ -46,13 +46,23 @@
                     <a href="{{ url_for('main.comingsoon')}}" class="card-link">Coming Soon</a>
                 </div>
             </div>
+        {% if latest_projects %}
+            {% for project in latest_projects %}
+                <div class="card text-center my-2" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.pro_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ project.pro_author }}, {{ project.pro_date.strftime('%B %Y') }}</h6>
+                        <p class="card-text">{{ project.pro_desc }}</p>
+                        {% if project.pro_link %}
+                        <a href="{{ project.pro_link }}" class="card-link">Code</a>
+                        {% endif %}
+                        {% if project.pro_embed  %}
+                        <a href="{{ url_for('main.project', projectid=project.id) }}" class="card-link">Embed</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
         </div>
-        <!-- <div class='project col-sm-5'>
-            <h4><a href="#" target='_blank'>Title</a></h4>
-            <h6>Author, Date</h6>
-            <p>Description of the project</p>
-            <br>
-        </div> -->
     </div>
-</div>
 {% endblock %}

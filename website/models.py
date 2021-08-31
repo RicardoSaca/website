@@ -25,6 +25,7 @@ class Book(db.Model):
     name = db.Column(db.String(50))
     author = db.Column(db.String(30))
     date_finished = db.Column(db.Date)
+    progress = db.Column(db.String(10))
     blog_url = db.Column(db.String(200))
 
 class Project(db.Model):
@@ -34,7 +35,7 @@ class Project(db.Model):
     pro_name = db.Column(db.String(50))
     pro_author = db.Column(db.String(30))
     pro_date = db.Column(db.Date)
-    pro_desc = db.Column(db.String(100))
+    pro_desc = db.Column(db.Text)
     pro_link = db.Column(db.Text)
     pro_embed = db.Column(db.Text)
 
