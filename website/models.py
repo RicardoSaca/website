@@ -27,6 +27,7 @@ class Book(db.Model):
     date_finished = db.Column(db.Date)
     progress = db.Column(db.String(10))
     blog_url = db.Column(db.String(200))
+    notes = db.Column(db.Text)
 
 class Project(db.Model):
     __tablename__ = 'projects'
@@ -38,6 +39,7 @@ class Project(db.Model):
     pro_desc = db.Column(db.Text)
     pro_link = db.Column(db.Text)
     pro_embed = db.Column(db.Text)
+    pro_show = db.Column(db.Boolean, unique=False, default=False)
 
 @login.user_loader
 def load_user(id):
