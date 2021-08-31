@@ -10,8 +10,6 @@ main = Blueprint('main', __name__, template_folder='templates')
 @main.route('/')
 def home():
     latest_projects = Project.query.order_by(Project.pro_date.desc()).limit(2).all()
-    for project in latest_projects:
-        print(project.pro_name)
     return render_template("home.html", latest_projects=latest_projects)
 
 @main.route('/about')
@@ -58,13 +56,20 @@ def portfolio():
 @main.route('/project/<projectid>')
 def project(projectid):
     pro = Project.query.get(projectid)
-    print(pro.pro_embed)
     return render_template("project.html", pro=pro)
 
 @main.route('/bookshelf')
 def bookshelf():
-    books = Book.query.all()
-    return render_template("bookshelf.html", books=books)
+    books = get_books()
+    years = []
+    for book in books:
+        if book.date_finished:
+            years.append(book.date_finished.strftime('%Y'))
+    years_set = set(years)
+    # convert the set to the list
+    years = (list(years_set))
+    years.sort(reverse = True)
+    return render_template("bookshelf.html", books=books, years=years)
 
 @main.route('/comingsoon')
 def comingsoon():
@@ -73,3 +78,7 @@ def comingsoon():
 @main.route('/error')
 def error():
     return render_template("error.html")
+
+def get_books():
+    books = Book.query.all()
+    return books
