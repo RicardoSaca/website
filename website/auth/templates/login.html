@@ -7,14 +7,14 @@
     </div>
 </div>
 <div class="row justify-content-center">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash col-sm-6 col-11 text-center mt-2">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
     <div class="col-sm-6 col-11 text-center pt-4 login">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}
-            </div>
-        {% endif %}
-        {% endwith %}
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <p>

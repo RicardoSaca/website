@@ -20,7 +20,8 @@ def login():
         if not user or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('auth.login'))
-
+        if form.username.data != 'ricardosaca':
+            flash('You are not allowed to login')
         login_user(user, remember=form.remember_me.data)
         return redirect('/admin')
     return render_template('login.html', title='Sign In', form=form)
