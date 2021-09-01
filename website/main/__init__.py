@@ -61,8 +61,10 @@ def project(projectid):
 @main.route('/bookshelf')
 def bookshelf():
     books = get_books()
+
     years = []
     for book in books:
+        print(book.name, book.date_finished)
         if book.date_finished:
             years.append(book.date_finished.strftime('%Y'))
     years_set = set(years)
@@ -80,5 +82,5 @@ def error():
     return render_template("error.html")
 
 def get_books():
-    books = Book.query.all()
+    books = Book.query.order_by(Book.date_finished.desc()).all()
     return books
