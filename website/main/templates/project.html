@@ -10,7 +10,10 @@
             <span class="align-middle">
                 <h1>{{ pro.pro_name}}</h1>
                 <p>
-                    {{pro.pro_author}} - {{pro.pro_date.strftime('%B %Y')}}
+                    <i>{{pro.pro_author}} - {{pro.pro_date.strftime('%B %Y')}}</i>
+                </p>
+                <p>
+                    {{pro.pro_desc}}
                 </p>
             </span>
         </div>
