@@ -101,6 +101,7 @@ Contact
     border: none;
     border: 1px solid;
     padding: 5px;
+    text-align:center;
     border-radius: 2px;
     border-color: lightgray;
 }
@@ -109,6 +110,7 @@ Contact
     width: 100%;
     height: 80%;
     border: 2px solid #dddddd78;
+    text-align:center;
     border-radius: 6px;
     padding: 10px;
 }
@@ -136,8 +138,6 @@ Contact
 /*
 Admin
 */
-
-
 .login {
     width: 80%;
     flex-direction: row;
@@ -147,7 +147,28 @@ Admin
 .login form {
     margin-top: 0px;
     padding: 0px 5px;
-    align-items: stretch;
+    align-items: center;
+}
+
+.login label{
+    display: none;
+}
+.remember label{
+    display:inline-flex;
+    text-align: right;
+}
+
+.remember input{
+    width: 10% !important;
+}
+
+.login input {
+    width: 60%;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 2px;
+    text-align:center;
+    border-color: lightgray;
 }
 
 .login input#submit {
