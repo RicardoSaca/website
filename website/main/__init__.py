@@ -9,7 +9,7 @@ main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/')
 def home():
-    latest_projects = Project.query.filter(Project.pro_show.is_(True)).all()
+    latest_projects = get_latest()
     return render_template("home.html", latest_projects=latest_projects)
 
 @main.route('/about')
@@ -50,27 +50,18 @@ def contact():
 
 @main.route('/portfolio')
 def portfolio():
-    projects = Project.query.order_by(Project.pro_date.desc()).all()
+    projects = get_projects()
     return render_template("portfolio.html", projects=projects)
 
 @main.route('/project/<projectid>')
 def project(projectid):
-    pro = Project.query.get(projectid)
+    pro = get_project(projectid)
     return render_template("project.html", pro=pro)
 
 @main.route('/bookshelf')
 def bookshelf():
     books = get_books()
-
-    years = []
-    for book in books:
-        print(book.name, book.date_finished)
-        if book.date_finished:
-            years.append(book.date_finished.strftime('%Y'))
-    years_set = set(years)
-    # convert the set to the list
-    years = (list(years_set))
-    years.sort(reverse = True)
+    years = get_years(books)
     return render_template("bookshelf.html", books=books, years=years)
 
 @main.route('/comingsoon')
@@ -81,6 +72,32 @@ def comingsoon():
 def error():
     return render_template("error.html")
 
+######  Helper formulas ######
 def get_books():
     books = Book.query.order_by(Book.date_finished.desc()).all()
     return books
+
+def get_years(books):
+    years = []
+    for book in books:
+        if book.date_finished:
+            years.append(book.date_finished.strftime('%Y'))
+    years_set = set(years)
+    # convert the set to the list
+    years = (list(years_set))
+    years.sort(reverse = True)
+    return years
+
+def get_projects():
+    projects = Project.query.order_by(Project.pro_date.desc()).all()
+    return projects
+
+def get_latest():
+    latest_projects = Project.query.filter(Project.pro_show.is_(True)).order_by(Project.pro_date.desc()).all()
+    return latest_projects
+
+def get_project(projectid):
+    pro = Project.query.get(projectid)
+    return pro
+
+
