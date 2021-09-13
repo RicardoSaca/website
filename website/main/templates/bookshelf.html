@@ -23,7 +23,7 @@
                 {% if book.progress == 'Progress' %}
                 <li class="list-group-item">
                     <div>
-                        <i class="fa fa-hourglass" aria-hidden="true"></i><span class="title">{{book.name}}</span>, {{book.author}}
+                        <i class="fas fa-hourglass-half" aria-hidden="true"></i><span class="title">{{book.name}}</span>, {{book.author}}
                     </div>
                 </li>
                 {% endif %}
@@ -41,7 +41,7 @@
                 {% if book.progress == 'Wish'%}
                 <li class="list-group-item">
                     <div>
-                        <i class='fa fa-book' aria-hidden="true"></i>
+                        <i class="fas fa-hourglass-start" aria-hidden="true"></i>
                         <span class="title">{{book.name}}</span>, {{book.author}}
                     </div>
                 </li>
@@ -63,10 +63,10 @@
                         <li class="list-group-item">
                             <div>
                                 {% if book.progress == 'Favorite' %}
-                                    <i class='fa fa-star' aria-hidden="true"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
                                 {% endif %}
                                 {% if book.progress == 'Read' %}
-                                    <i class='fa fa-book' aria-hidden="true"></i>
+                                    <i class='fas fa-book' aria-hidden="true"></i>
                                 {% endif %}
                                 <span class="title">{{book.name}}</span>, {{book.author}}
                                 <p>{{ book.notes }}</p>
@@ -85,7 +85,8 @@
 {% endblock %}
 
 <!-- icons
-    fa fa-book : book
-    fa fa-star : favorite
-    fa fa-hourglass : reading
+    fas fa-book : book
+    fas fa-star : favorite
+    fas fa-hourglass-half : reading
+    fas fa-hourglass-start : wish
 -->
