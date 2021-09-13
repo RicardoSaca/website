@@ -1,6 +1,14 @@
-#website
+## My Personal Website
 
-This is a repository where I will attempt to make a personal website. 
-In this project I will teach myself git, flask, html and css. 
+This repository holds the code to my personal website. 
 
-Ricardo Saca 
+During this project I have taught myself to use:
+ * Flask (flask-mail, flask-login, flask-admin, flask-sqlalchemy, and Blueprints) for web development
+ * Git for code management
+ * Heroku for deployment
+ * HTML, CSS, and Bootstrap for front end development 
+ * sql-alchemy, and postgres for database management  
+
+My website, like myself, is still a work in progress. I will continue to improve it and add projects as I learn. 
+
+by Ricardo Saca 
