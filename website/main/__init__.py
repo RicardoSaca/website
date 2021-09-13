@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, send_from_directory
 from flask_mail import Message
 from website import mail
+import os
 
 from website.models import Book, Project
 from website.forms import ContactForm
@@ -71,6 +72,11 @@ def comingsoon():
 @main.route('/error')
 def error():
     return render_template("error.html")
+
+@main.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(main.root_path, 'static'),
+                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 ######  Helper formulas ######
 def get_books():
