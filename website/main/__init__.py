@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, send_from_directory
 from flask_mail import Message
-from website import mail
+from website.extensions import mail
 import os
+import traceback
 
 from website.models import Book, Project
 from website.forms import ContactForm
@@ -27,23 +28,24 @@ def contact():
             return render_template('contact.html', form=form)
         else:
             try:
-                msg = Message(f'Message from {form.name.data}', sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
-                msg.body = """
-                %s has contacted you.
-                You can reply to this email address <%s>
-                They said:
+                    msg = Message(f'Message from {form.name.data}', sender='ricardosaca98@gmail.com', recipients=['ricardosaca@gmail.com'])
+                    msg.body = """
+                    %s has contacted you.
+                    You can reply to this email address <%s>
+                    They said:
 
-                %s
+                    %s
 
-                """ % (form.name.data, form.email.data, form.message.data)
-                mail.send(msg)
-                print("success! email sent")
-                return render_template('contact.html', success=True)
-            except:
+                    """ % (form.name.data, form.email.data, form.message.data)
+                    mail.send(msg)
+                    print("success! email sent")
+                    return render_template('contact.html', success=True)
+            except Exception:
                 import sys
                 e = sys.exc_info()[0]
                 print("error! email failed to send")
-                print(e)
+                print(e, sys.exc_info()[2])
+                print(traceback.format_exc())
                 return render_template('error.html')
 
     elif request.method == 'GET':

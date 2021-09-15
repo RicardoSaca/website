@@ -1,21 +1,18 @@
 from flask import Flask, redirect, url_for
-from flask_mail import Mail
-from configparser import ConfigParser
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, current_user
-from flask_admin import Admin, AdminIndexView
+# from flask_mail import Mail
+# from configparser import ConfigParser
+# from flask_sqlalchemy import SQLAlchemy
+from flask_login import current_user
+from flask_admin import AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from config import Config
-
-db = SQLAlchemy()
-login = LoginManager()
-admin = Admin()
-mail = Mail()
-config = ConfigParser()
 
 
 def create_app():
     app = Flask(__name__)
+
+    #import extensions
+    from website.extensions import db, login, admin, mail, config
 
     app.config.from_object(Config)
     app.config.update(Config.mail_settings)
@@ -56,10 +53,13 @@ def create_app():
     admin.add_view(MyModelView(Project, db.session))
     admin.add_view(MyModelView(Book, db.session))
 
+    #init mail
+    mail.init_app(app)
     # register blueprints
-    from website.main import main
-    app.register_blueprint(main)
-    from website.auth import auth
-    app.register_blueprint(auth)
+    with app.app_context():
+        from website.main import main
+        app.register_blueprint(main)
+        from website.auth import auth
+        app.register_blueprint(auth)
 
     return app
