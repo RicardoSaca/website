@@ -55,6 +55,7 @@ def create_app():
 
     #init mail
     mail.init_app(app)
+
     # register blueprints
     with app.app_context():
         from website.main import main
