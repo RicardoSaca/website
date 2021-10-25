@@ -59,7 +59,6 @@ Books
     font-size:larger;
 }
 
-
 /*
 Contact
 */
@@ -224,7 +223,15 @@ footer {
     text-decoration: none;
     margin: 5px 2px -2px;
     background: transparent;
-    color: gray;
+    color: grey;
+}
+
+.fa-books{
+    padding: 0px;
+    font-size: 25px;
+    margin: 0px;
+    color: gold;
+    margin-left: auto;
 }
 
 .fab:hover, .far:hover, .fas:hover {

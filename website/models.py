@@ -22,12 +22,13 @@ class Book(db.Model):
     __tablename__ = 'books'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
+    title = db.Column(db.String(150))
     author = db.Column(db.String(50))
     date_finished = db.Column(db.Date)
     progress = db.Column(db.String(10))
     blog_url = db.Column(db.String(200))
     notes = db.Column(db.Text)
+    isbn = db.Column(db.Text(10))
 
 class Project(db.Model):
     __tablename__ = 'projects'

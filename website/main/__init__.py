@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, request, flash, send_from_directory
+from flask import Blueprint, render_template, request, flash, send_from_directory, current_app
 from flask_mail import Message
+from flask_sqlalchemy import SQLAlchemy
 from website.extensions import mail
 import os
 import traceback
+import pandas as pd
 
 from website.models import Book, Project
 from website.forms import ContactForm
@@ -66,6 +68,13 @@ def bookshelf():
     books = get_books()
     years = get_years(books)
     return render_template("bookshelf.html", books=books, years=years)
+
+# @main.route('/bookshelf_analytics')
+# def analytics():
+#     with current_app.app_context():
+#         con = current_app.config['SQLALCHEMY_DATABASE_URI']
+#         query = pd.read_sql_query("SELECT *  FROM Books ORDER BY date_finished ASC;", con=con)
+#     return render_template("analytics.html", books=query)
 
 @main.route('/comingsoon')
 def comingsoon():
