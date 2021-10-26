@@ -13,8 +13,9 @@ main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/')
 def home():
-    latest_projects = get_latest()
-    return render_template("home.html", latest_projects=latest_projects)
+    latest_projects = get_latest_projects()
+    latest_books = get_latest_books(3)
+    return render_template("home.html", latest_projects=latest_projects, latest_books=latest_books)
 
 @main.route('/about')
 def about():
@@ -105,11 +106,16 @@ def get_years(books):
     years.sort(reverse = True)
     return years
 
+def get_latest_books(num):
+    books = Book.query.filter(Book.date_finished.is_not(None)).order_by(Book.date_finished.desc()).limit(num)
+    print(books)
+    return books
+
 def get_projects():
     projects = Project.query.order_by(Project.pro_date.desc()).all()
     return projects
 
-def get_latest():
+def get_latest_projects():
     latest_projects = Project.query.filter(Project.pro_show.is_(True)).order_by(Project.pro_date.desc()).all()
     return latest_projects
 
