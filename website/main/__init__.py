@@ -171,7 +171,7 @@ def book_animation(df):
 
     #Initialize plot
     fig, (ax1, ax2) = plt.subplots(1, 2,gridspec_kw={'width_ratios': [2,1]},
-                                    figsize=(12,6), dpi=600)
+                                    figsize=(12,6), dpi=300)
 
     #Update ticks
     ax1.tick_params(axis='x', labelrotation=45)
@@ -249,9 +249,6 @@ def book_animation(df):
     #Animate Plot
     animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=550, fargs=[x,y,l], blit=True, save_count=0)
 
-    # f = r"/Users/ricardosaca/Documents/projects/bookanalytics/final.mp4"
-    # writervideo = FFMpegWriter(fps=5, bitrate=600)
-    # animation.save(f, writer=writervideo, dpi=600)
     # #Save Plot
     html = animation.to_html5_video()
     html = html.replace('width="7200" height="3600"','width="900" height="450"')
