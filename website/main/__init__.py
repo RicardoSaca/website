@@ -247,7 +247,7 @@ def book_animation(df):
     plt.figure(facecolor='white')
 
     #Animate Plot
-    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=550, fargs=[x,y,l], blit=True)
+    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=550, fargs=[x,y,l], blit=True, save_count=0)
 
     # f = r"/Users/ricardosaca/Documents/projects/bookanalytics/final.mp4"
     # writervideo = FFMpegWriter(fps=5, bitrate=600)
