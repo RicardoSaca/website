@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from website.extensions import mail
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, FFMpegWriter
 import os
 import traceback
 import pandas as pd
