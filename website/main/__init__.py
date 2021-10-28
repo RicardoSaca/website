@@ -128,7 +128,7 @@ def get_project(projectid):
     return pro
 
 def book_animation(df):
-    plt.switch_backend('Agg')
+    plt.switch_backend('TkAgg')
     df['date_finished'] = pd.to_datetime(df['date_finished'])
     df['year'] = df['date_finished'].dt.year
     pd.options.display.float_format = '{:.0f}'.format
