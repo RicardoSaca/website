@@ -7,11 +7,10 @@ from matplotlib.animation import FuncAnimation, FFMpegWriter
 def get_books_df():
     with current_app.app_context():
         con = current_app.config['SQLALCHEMY_DATABASE_URI']
-        query = pd.read_sql_query("SELECT * FROM Books WHERE (progress = 'Read') OR (progress = 'Favorite') ORDER BY date_finished ASC;", con=con)
+        query = pd.read_sql_query("SELECT id, title, author, date_finished FROM books WHERE books.date_finished IS NOT NULL ORDER BY books.date_finished ASC;", con=con)
         return query
 
 def book_animation(df):
-    print(df['progress'].head(30))
     plt.switch_backend('Agg')
     df['date_finished'] = pd.to_datetime(df['date_finished'])
     df['year'] = df['date_finished'].dt.year
@@ -24,7 +23,7 @@ def book_animation(df):
     sumMonthYear.to_frame().reset_index()
     #Get starting data and ending date
     startYear = min(df['date_finished']) - pd.offsets.DateOffset(months=1)
-    endYear = max(df['date_finished'])
+    endYear = max(df['date_finished']) + pd.offsets.DateOffset(months=1)
     #Off set date by one month
     yearList = pd.date_range(startYear, endYear, freq='MS').strftime(dateformat).tolist()
     #Data frame of each month of interest
@@ -97,7 +96,7 @@ def book_animation(df):
 
     #Set goal of 2021 at 12 books
     ax2.axhline(y=12, color='black', linestyle='--', label='Goal for 2021')
-    ax2.text(0.02, 0.9,'Goal for 2021',
+    ax2.text(0.02, ((1/counts.iloc[0])*12),'Goal for 2021',
                     horizontalalignment='left',
                     verticalalignment='center',
                     transform = ax2.transAxes)
@@ -112,7 +111,7 @@ def book_animation(df):
 
     def animate(i, x, y, l):
         l.set_data(x[:i], y[:i])
-        j = i-1
+        j= i - 1
         if i == 0:
             running.set_text(f'Books finished on {x[i]:%b-%y} :{0}')
         else:
@@ -121,7 +120,6 @@ def book_animation(df):
             tally.xy = (x[j],y[j]+1)
         return l, tally, running
 
-    #
     #Animate Plot
     animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=500, fargs=[x,y,l], blit=True,save_count=0)
 

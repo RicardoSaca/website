@@ -75,10 +75,7 @@ def analytics():
 
 @main.route('/set_analytics')
 def set_analytics():
-    try:
-        save_file(book_animation(get_books_df()))
-    except:
-        redirect(url_for('main.error'))
+    save_file(book_animation(get_books_df()))
     return redirect(url_for('main.analytics'))
 
 @main.route('/comingsoon')
