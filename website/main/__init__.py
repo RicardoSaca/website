@@ -136,7 +136,7 @@ def book_animation(df):
     #Change date format from data to correct one
     df['monthYear'] = df['date_finished'].dt.strftime(dateformat)
     #Group data by monthYear
-    sumMonthYear = df.groupby('monthYear')['name'].count()
+    sumMonthYear = df.groupby('monthYear')['title'].count()
     sumMonthYear.to_frame().reset_index()
     #Get starting data and ending date
     startYear = min(df['date_finished']) - pd.offsets.DateOffset(months=1)
@@ -151,7 +151,7 @@ def book_animation(df):
     #make monthYear datetime
 
     #Add a running total and difference column
-    booksTotal['total'] = booksTotal.name.cumsum()
+    booksTotal['total'] = booksTotal.title.cumsum()
     booksTotal['diff'] = booksTotal.total.diff()
     booksTotal.fillna(0, inplace=True)
     plt.rcParams['animation.html'] = 'jshtml'
