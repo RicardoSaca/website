@@ -128,40 +128,32 @@ def get_project(projectid):
     return pro
 
 def book_animation(df):
-    plt.switch_backend('TkAgg')
+    plt.switch_backend('Agg')
     df['date_finished'] = pd.to_datetime(df['date_finished'])
     df['year'] = df['date_finished'].dt.year
-    pd.options.display.float_format = '{:.0f}'.format
-
     #Set dateformat
     dateformat='%b/%y'
     #Change date format from data to correct one
     df['monthYear'] = df['date_finished'].dt.strftime(dateformat)
     #Group data by monthYear
-    sumMonthYear = df.groupby('monthYear')['title'].count()
+    sumMonthYear = df.groupby('monthYear')['name'].count()
     sumMonthYear.to_frame().reset_index()
     #Get starting data and ending date
-    startYear = min(df['date_finished'])
-    startYear = startYear - pd.offsets.DateOffset(months=1)
+    startYear = min(df['date_finished']) - pd.offsets.DateOffset(months=1)
     endYear = max(df['date_finished'])
     #Off set date by one month
     yearList = pd.date_range(startYear, endYear, freq='MS').strftime(dateformat).tolist()
     #Data frame of each month of interest
     numBooks = pd.DataFrame()
     numBooks['monthYear'] = yearList
-    numBooks['count']=0
     #Merge numBooks with sumMonthYear
     booksTotal = pd.merge(numBooks, sumMonthYear, how='outer', on='monthYear')
-    #Drop count and replace NaN with 0
-    booksTotal.drop(columns=['count'], inplace=True)
-    booksTotal.fillna(0, inplace=True)
     #make monthYear datetime
-    numBooks['monthYear'] = pd.to_datetime(numBooks.monthYear, errors='coerce').dt.strftime('%b/%y')
+
     #Add a running total and difference column
-    booksTotal['total'] = booksTotal.title.cumsum()
+    booksTotal['total'] = booksTotal.name.cumsum()
     booksTotal['diff'] = booksTotal.total.diff()
     booksTotal.fillna(0, inplace=True)
-
     plt.rcParams['animation.html'] = 'jshtml'
 
     #Set values for charting
@@ -203,20 +195,6 @@ def book_animation(df):
                     verticalalignment='center',
                     transform = ax1.transAxes)
 
-    #Set plot Title
-    fig.suptitle("Books Read through the Years", fontsize=15)
-
-    def animate(i, x, y, l):
-        l.set_data(x[:i], y[:i])
-        j = i-1
-        if i == 0:
-            running.set_text(f'Books finished on {x[i]:%b-%y} :{0}')
-        else:
-            running.set_text(f'Books finished on {x[j]:%b-%y} : {"+" if booksTotal["diff"][j] != 0 else ""}{booksTotal["diff"][j]:.0f}')
-            tally.set_text(f'{y[j]:.0f}')
-            tally.xy = (x[j],y[j]+1)
-        return l, tally, running
-
     #Bar Plot
     counts = df["year"].value_counts()
     ax2.bar(counts.index, counts.values)
@@ -235,7 +213,7 @@ def book_animation(df):
 
     #Set goal of 2021 at 12 books
     ax2.axhline(y=12, color='black', linestyle='--', label='Goal for 2021')
-    ax2.text(0.02, ((1/counts.iloc[0])*12),'Goal for 2021',
+    ax2.text(0.02, 0.9,'Goal for 2021',
                     horizontalalignment='left',
                     verticalalignment='center',
                     transform = ax2.transAxes)
@@ -245,15 +223,25 @@ def book_animation(df):
 
     #Customize figure color
     plt.figure(facecolor='white')
+    #Set plot Title
+    fig.suptitle("Books Read through the Years", fontsize=15)
+
+    def animate(i, x, y, l):
+        l.set_data(x[:i], y[:i])
+        j = i-1
+        if i == 0:
+            running.set_text(f'Books finished on {x[i]:%b-%y} :{0}')
+        else:
+            running.set_text(f'Books finished on {x[j]:%b-%y} : {"+" if booksTotal["diff"][j] != 0 else ""}{booksTotal["diff"][j]:.0f}')
+            tally.set_text(f'{y[j]:.0f}')
+            tally.xy = (x[j],y[j]+1)
+        return l, tally, running
 
     #Animate Plot
-    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=550, fargs=[x,y,l], blit=True, save_count=0)
+    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=500, fargs=[x,y,l], blit=True,save_count=0)
 
     # #Save Plot
     html = animation.to_html5_video()
     html = html.replace('width="7200" height="3600"','width="900" height="450"')
-    print(html[:50])
-
     return html
-
 
