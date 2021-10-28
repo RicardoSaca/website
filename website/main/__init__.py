@@ -237,10 +237,12 @@ def book_animation(df):
             tally.xy = (x[j],y[j]+1)
         return l, tally, running
 
+    #
     #Animate Plot
     animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=500, fargs=[x,y,l], blit=True,save_count=0)
 
     # #Save Plot
+    writer = FFMpegWriter(fps=15)
     html = animation.to_html5_video()
     html = html.replace('width="7200" height="3600"','width="900" height="450"')
     return html
