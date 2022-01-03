@@ -28,7 +28,17 @@
       <!-- link to fonts -->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 
+      <!-- script for google analytics -->
 
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSX03WR75V"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HSX03WR75V');
+      </script>
       <title>{% block title %} {% endblock %} / Ricardo Saca</title>
       <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
