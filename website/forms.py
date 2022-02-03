@@ -4,9 +4,9 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from website.models import User
 
 class ContactForm(FlaskForm):
-    name = StringField("Name",  [validators.Required("Please enter your name.")])
-    email = StringField("Email",  [validators.Email("Not a valid email address."), validators.Required("Please enter your email address.")])
-    message = TextAreaField("Message", [validators.Required("Please enter a message.")])
+    name = StringField("Name", validators=[DataRequired("Please enter your name.")])
+    email = StringField("Email",  validators=[Email("Not a valid email address."), DataRequired("Please enter your email address.")])
+    message = TextAreaField("Message", validators=[DataRequired("Please enter a message.")])
     submit = SubmitField("Submit")
 
 class LoginForm(FlaskForm):
