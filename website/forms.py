@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, TextAreaField,StringField, PasswordField, BooleanField, SubmitField, validators, ValidationError
+from wtforms import TextAreaField,StringField, PasswordField, BooleanField, SubmitField, validators, ValidationError
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from website.models import User
 
 class ContactForm(FlaskForm):
-    name = TextField("Name",  [validators.Required("Please enter your name.")])
-    email = TextField("Email",  [validators.Email("Not a valid email address."), validators.Required("Please enter your email address.")])
+    name = StringField("Name",  [validators.Required("Please enter your name.")])
+    email = StringField("Email",  [validators.Email("Not a valid email address."), validators.Required("Please enter your email address.")])
     message = TextAreaField("Message", [validators.Required("Please enter a message.")])
     submit = SubmitField("Submit")
 
