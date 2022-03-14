@@ -1,4 +1,3 @@
-from tkinter import HORIZONTAL
 from flask import current_app
 from numpy import dtype
 import pandas as pd
