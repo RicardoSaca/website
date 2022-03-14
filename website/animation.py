@@ -1,5 +1,4 @@
 from flask import current_app
-from numpy import dtype
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -101,16 +100,15 @@ def book_animation(df):
 
 
     #Set goal of 2022 at 18 books
-    # ax2.axhline(y=18, color='black', linestyle='--', label='Goal for 2022')
-    # ax2.text(0.02, ((1/counts.iloc[0])*18),'Goal for 2022',
-    #                 horizontalalignment='left',
-    #                 verticalalignment='center',
-    #                 transform = ax2.transAxes)
+    ax2.axhline(y=18, color='black', linestyle='--', label='Goal for 2022')
+    ax2.text(0.02, ((1/ax2.get_ylim()[1])*17.5),'Goal for 2022 (18)',
+                    horizontalalignment='left',
+                    verticalalignment='center',
+                    transform = ax2.transAxes)
 
     #Set goal of 2021 at 12 books
     ax2.axhline(y=12, color='black', linestyle='--', label='Goal for 2021')
-    print(counts.iloc[0])
-    ax2.text(0.02, ((1/counts.iloc[0])*12),'Goal for 2021',
+    ax2.text(0.02, ((1/ax2.get_ylim()[1])*12.5),'Goal for 2021 (12)',
                     horizontalalignment='left',
                     verticalalignment='center',
                     transform = ax2.transAxes)
