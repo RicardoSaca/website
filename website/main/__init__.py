@@ -109,7 +109,6 @@ def get_years(books):
 
 def get_latest_books(num):
     books = Book.query.filter(Book.date_finished.is_not(None)).order_by(Book.date_finished.desc()).limit(num)
-    print(books)
     return books
 
 def get_projects():
