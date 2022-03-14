@@ -1,4 +1,6 @@
+from tkinter import HORIZONTAL
 from flask import current_app
+from numpy import dtype
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -77,7 +79,11 @@ def book_animation(df):
                     horizontalalignment='left',
                     verticalalignment='center',
                     transform = ax1.transAxes)
-
+    detail = ax1.text(0.02, 0.88, 'test',
+                    horizontalalignment='left',
+                    verticalalignment='top',
+                    transform =ax1.transAxes,
+                    bbox=dict(boxstyle="square,pad=0.5", facecolor='white'))
     #Bar Plot
     counts = df["year"].value_counts()
     ax2.bar(counts.index, counts.values)
@@ -94,12 +100,22 @@ def book_animation(df):
     ax2.yaxis.tick_right()
     ax2.yaxis.set_label_position("right")
 
+
+    #Set goal of 2022 at 18 books
+    # ax2.axhline(y=18, color='black', linestyle='--', label='Goal for 2022')
+    # ax2.text(0.02, ((1/counts.iloc[0])*18),'Goal for 2022',
+    #                 horizontalalignment='left',
+    #                 verticalalignment='center',
+    #                 transform = ax2.transAxes)
+
     #Set goal of 2021 at 12 books
     ax2.axhline(y=12, color='black', linestyle='--', label='Goal for 2021')
+    print(counts.iloc[0])
     ax2.text(0.02, ((1/counts.iloc[0])*12),'Goal for 2021',
                     horizontalalignment='left',
                     verticalalignment='center',
                     transform = ax2.transAxes)
+
     #Customize bar plot spines
     ax2.spines['left'].set_visible(False)
     ax2.spines['top'].set_visible(False)
@@ -114,14 +130,23 @@ def book_animation(df):
         j= i - 1
         if i == 0:
             running.set_text(f'Books finished on {x[i]:%b-%y} :{0}')
+            detail.set_text(f'No books finished')
         else:
             running.set_text(f'Books finished on {x[j]:%b-%y} : {"+" if booksTotal["diff"][j] != 0 else ""}{booksTotal["diff"][j]:.0f}')
             tally.set_text(f'{y[j]:.0f}')
             tally.xy = (x[j],y[j]+1)
+            books_read = df[['title', 'author']].loc[df.monthYear == f'{x[j]:%b/%y}']
+            if books_read.empty:
+                detail.set_text(f'No books finished')
+            else:
+                display =f"Read:"
+                for book in books_read.iterrows():
+                    display += f"\n - {book[1]['title']} by {book[1]['author']}"
+                detail.set_text(display)
         return l, tally, running
 
     #Animate Plot
-    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=500, fargs=[x,y,l], blit=True,save_count=0)
+    animation = FuncAnimation(fig, func=animate, frames=booksTotal.shape[0],interval=700, fargs=[x,y,l], blit=True,save_count=0)
 
     # #Save Plot
     writer = FFMpegWriter(fps=15)
