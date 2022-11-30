@@ -78,6 +78,7 @@ def draw_book_line(booksTotal):
 
 def draw_book_bar(counts):
     fig = go.Bar(x=counts.index, y=counts.values,
+                marker_color='#636EFA',
                 text=counts.values, textposition='outside',
                 hovertemplate="<b>Read %{y} Books in %{x}</b><extra></extra>")
 
