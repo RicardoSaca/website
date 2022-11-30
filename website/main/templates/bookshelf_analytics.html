@@ -6,21 +6,59 @@
 <div class="row justify-content-center bio">
     <div class="col-sm-10 text-center">
         <h1>Analytics of My Personal Bookshelf</h1>
-        <p>
-            Here is a Matplotlib animation that shows the trajectory of my reading habits.
-            On the left, there is a line chart that depicts the number of books read each month since 2019.
-            On the right, there is a total of the books I read each year.
-            You can also notice that I have surpassed my reading goal for 2021.
-        </p>
+            <p>
+                Here are two Plotly Graphs and a Matplotlib animation that depict my reading habits.<br>
+                Both, the graphs and animation, contain:<br>
+                        On the left, a line chart that depicts the number of books read each month since 2019.<br>
+                        On the right, a bar chart that shows the total of the books I read each year.<br>
+                You can also notice that I have surpassed my reading goal for 2021 and 2022.
+            </p>
     </div>
 </div>
 
-<div class="ratio ratio-16x9">
-    {% block animation %}
 
-    {% endblock %}
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseOne">
+            Bookshelf Visualization
+            </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div id="chart" class="chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Bookshelf Animation
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div class="ratio ratio-16x9">
+                    {% block animation %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var chart = {{graphJSON | safe}};
+    var data = chart["data"];
+    var layout = chart["layout"];
+    var config = {responsive: true};
+    Plotly.newPlot("chart", data, layout, config);
+</script>
 
 {% endblock %}
 

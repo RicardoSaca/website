@@ -59,6 +59,29 @@ Books
     font-size:larger;
 }
 
+.cover{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.description{
+    display: flex;
+    align-items: center;
+}
+.fa-books{
+    padding: 0px;
+    font-size: 25px;
+    margin: 0px;
+    color: gold!important;
+    margin-left: auto;
+}
+
+.fab:hover, .far:hover, .fas:hover {
+    opacity: 0.8;
+    color: gold;
+}
+
 /*
 Contact
 */
@@ -226,15 +249,3 @@ footer {
     color: grey;
 }
 
-.fa-books{
-    padding: 0px;
-    font-size: 25px;
-    margin: 0px;
-    color: gold;
-    margin-left: auto;
-}
-
-.fab:hover, .far:hover, .fas:hover {
-    opacity: 0.7;
-    color: black;
-}

@@ -2,11 +2,14 @@ from flask import Blueprint, render_template, request, flash, send_from_director
 from flask_mail import Message
 from flask_sqlalchemy import SQLAlchemy
 from website.extensions import mail
+import json
+import plotly
 import os
 import traceback
 from website.models import Book, Project
 from website.forms import ContactForm
 from website.animation import get_books_df, book_animation, save_file
+from website.visualization import draw_book_viz
 
 main = Blueprint('main', __name__, template_folder='templates')
 
@@ -71,7 +74,10 @@ def bookshelf():
 
 @main.route('/bookshelf_analytics')
 def analytics():
-    return render_template("analytics.html")
+    books_df = get_books_df()
+    fig = draw_book_viz(books_df)
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template("analytics.html", graphJSON=graphJSON)
 
 @main.route('/set_analytics')
 def set_analytics():
