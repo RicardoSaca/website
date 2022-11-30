@@ -53,6 +53,39 @@
 
 <div class="container fluid mt-3 mb-5">
     <div class="col text-center">
+        <h2><a href="#paused" class="link-dark text-decoration-none" data-bs-toggle="collapse">Paused</a></h2>
+        <hr>
+    </div>
+    <div id="paused" class="row row-cols-1 row-cols-md-3 collapse show g-3 justify-content-center">
+        {% for book in books %}
+            {% if book.progress == 'Paused' %}
+        <div class="col mb-3">
+            <div class="card h-100" style="max-width: 540px;">
+                <div class="row g-0 h-100">
+                    <div class="col-md-4 cover">
+                        <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg"
+                                class="img-fluid rounded-right" alt="Cover of {{book.title}}">
+                                <div class="card-img-overlay px-0 py-0 w-25 h-50">
+                                    <i class="fas fa-hourglass-half fa-books pt-3 pb-0 ps-3 pe-0 h-100" aria-hidden="true"></i>
+                                </div>
+                    </div>
+                    <div class="col-md-8 description">
+                        <div class="card-body">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{book.author}}</h6>
+                            <p class="card-text">{{book.notes}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container fluid mt-3 mb-5">
+    <div class="col text-center">
         <h2><a href="#wishlist" class="link-dark text-decoration-none" data-bs-toggle="collapse">Wishlist</a></h2>
         <hr>
     </div>
