@@ -9,7 +9,8 @@
     --text-dark-color:#2F2F2F;
 }
 
-/* rgb(241, 242, 237) */
+/* rgb(241, 242, 237) 
+525200*/
 
 html {
     font-family:'Open Sans', sans-serif;
@@ -26,11 +27,12 @@ Base: Navbar colors
 */
 
 a {
-    color: olive;
+    color: #000080;
     text-decoration: underline;
 }
 a:hover {
-    color: darkolivegreen;
+    color: #191970;
+    text-decoration:  none;
 }
 
 .navbar {
