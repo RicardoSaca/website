@@ -26,6 +26,12 @@ body{
 Base: Navbar colors
 */
 
+hr {
+    color: var(--primary-color);
+    opacity: .50;
+    height: 1.5px !important;
+}
+
 a {
     color: #000080;
     text-decoration: underline;
