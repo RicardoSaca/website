@@ -3,7 +3,7 @@
     --secondary-color:#D5DFE8;
     --text-light-color: #F1F2ED;
     --text-dark-color:#2F2F2F; */
-    --primary-color: #31413E;
+    --primary-color: #30403d;
     --secondary-color:#A4B4AD;
     --text-light-color: #F1F2ED;
     --text-dark-color:#2F2F2F;
@@ -25,6 +25,14 @@ body{
 Base: Navbar colors
 */
 
+a {
+    color: olive;
+    text-decoration: underline;
+}
+a:hover {
+    color: darkolivegreen;
+}
+
 .navbar {
     background-color: var(--primary-color) !important;
 }
@@ -43,6 +51,17 @@ Base: Navbar colors
     background-color: var(--text-light-color);
     color: #2F2F2F;
 
+}
+.btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-dark-color)
+}
+.btn-check:focus+.btn-primary, .btn-primary:focus , .btn-primary:hover{
+    color: var(--text-light-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgb(49 65 62 / 50%);
 }
 /*
 Home
@@ -181,9 +200,6 @@ Contact
     text-align:center;
     border-radius: 6px;
     padding: 10px;
-}
-.contact textarea#message::selection{
-    border-color: var(--secondary-color);
 }
 
 .contact input#submit {

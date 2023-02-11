@@ -26,35 +26,34 @@
         <form action="{{ url_for('main.contact') }}" method=post>
             <div>
                 {{ form.hidden_tag() }}
-                <div class="row row-col-2 justify-content-around">
-                    <div class="col-12 col-md-6">
+                <div class="row row-col-2 justify-content-center">
+                    <div class="col-12 col-md-5">
                     <!-- name form -->
                         <p>
                             {{ form.name.label }} <br>
                             {{ form.name(placeholder='Your name')}}
                         </p>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-5">
                         <!-- email form -->
                         <p>
                             {{ form.email.label }} <br>
                             {{ form.email(placeholder='Your e-mail ')}}
                         </p>
                     </div>
-                </div>
-                <div class="col-12 col-md-12">
-                    <!-- Content of your request -->
-                    <p>
-                        {{ form.message.label }} <br>
-                        {{ form.message(placeholder='Write your request...')}}
-                    </p>
-                </div>
-                <div class="col-8 col-md-4 my-2 mx-auto">
-                    <!-- Submit button -->
-                    <p>
-                        {{ form.submit }}
-                    </p>
-                </div>
+                    <div class="col-12 col-md-10">
+                        <!-- Content of your request -->
+                        <p>
+                            {{ form.message.label }} <br>
+                            {{ form.message(placeholder='Write your request...')}}
+                        </p>
+                    </div>
+                    <div class="col-8 col-md-4 my mx-auto">
+                        <!-- Submit button -->
+                        <p>
+                            {{ form.submit }}
+                        </p>
+                    </div>
             </div>
         </form>
     </div>
