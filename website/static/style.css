@@ -311,3 +311,9 @@ Footer
     color: var(--text-light-color);
 }
 
+/*
+Bookshelf analytics
+*/
+.accordion, .accordion-body, .accordion-header, .accordion-button{
+    background: var(--text-light-color) !important;
+}
