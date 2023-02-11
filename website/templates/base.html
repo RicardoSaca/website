@@ -46,7 +46,7 @@
   <body class="d-flex flex-column h-100">
     <header>
       <!-- nav bar with bootstrap -->
-      <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-secondary">
+      <nav class="navbar sticky-top navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{ url_for('main.home') }}">Ricardo Saca</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
               </li>
             </ul>
             <span>
-              <a class="btn btn-dark" href="{{ url_for('static', filename='documents/Ricardo_Saca.pdf')}}"
+              <a class="btn btn-resume" href="{{ url_for('static', filename='documents/Ricardo_Saca.pdf')}}"
               role="button" target="_blank">My Resume</a>
             </span>
           </div>
@@ -88,7 +88,7 @@
       </div>
     </main>
 
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3">
       <div class="container">
         <span class="text-muted">
           <p>

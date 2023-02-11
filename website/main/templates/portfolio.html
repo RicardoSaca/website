@@ -21,7 +21,7 @@
     <div class="card text-center my-2" style="width: 20rem;">
         <div class="card-body">
             <h5 class="card-title">{{ project.pro_name }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ project.pro_author }}, {{ project.pro_date.strftime('%B %Y') }}</h6>
+            <h6 class="card-subtitle mb-2 fw-light">{{ project.pro_author }}, {{ project.pro_date.strftime('%B %Y') }}</h6>
             <p class="card-text">{{ project.pro_desc }}</p>
             {% if project.pro_link %}
             <a href="{{ project.pro_link }}" class="card-link">Code</a>
