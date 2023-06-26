@@ -45,13 +45,17 @@ def create_app():
         def inaccessible_callback(self, name, **kwargs):
             return redirect(url_for('main.home'))
 
+    class BookModelView(MyModelView):
+        column_searchable_list = ['title', 'author', 'progress']
+        column_filters = ['title', 'author', 'progress']
+
     #Initialize FLASK-Admin and Database
     admin.init_app(app, index_view=MyAdminIndexView())
 
     #Set Views for FLASK-Admin
     admin.add_view(MyModelView(User, db.session))
     admin.add_view(MyModelView(Project, db.session))
-    admin.add_view(MyModelView(Book, db.session))
+    admin.add_view(BookModelView(Book, db.session))
 
     #init mail
     mail.init_app(app)
