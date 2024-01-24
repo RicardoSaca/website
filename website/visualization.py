@@ -3,6 +3,8 @@ import numpy as np
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from website.animation import get_books_df
+from flask import current_app
+
 
 def draw_book_viz(df):
     #Data for bar
@@ -27,9 +29,11 @@ def draw_book_viz(df):
     numBooks = pd.DataFrame()
     numBooks['monthYear'] = yearList
     #Merge numBooks with sumMonthYear
-    booksTotal = pd.merge(numBooks, sumMonthYear, how='outer', on='monthYear')
+    booksTotal = pd.merge(sumMonthYear, numBooks, how='outer', on='monthYear')
     #make monthYear datetime
     booksTotal.fillna(0, inplace=True)
+    booksTotal['date'] = pd.to_datetime(booksTotal.monthYear.values, format='%b/%y')
+    booksTotal = booksTotal.sort_values(by='date')
     #Add a running total and difference column
     booksTotal['total'] = booksTotal.title.cumsum()
     booksTotal['diff'] = booksTotal.total.diff()
@@ -47,7 +51,7 @@ def draw_book_viz(df):
     # Add line chart
     fig.add_trace(draw_book_line(booksTotal), row=1, col=1)
     fig['layout']['yaxis'].update(ticks='outside', showline=True, linewidth=1, linecolor='black')
-    fig['layout']['xaxis'].update(tickangle=-45,dtick=2, range=[startYear, endYear], ticks='outside', showline=True, linewidth=1, linecolor='black')
+    fig['layout']['xaxis'].update(tickangle=-45,dtick=3, range=[startYear, endYear], ticks='outside', showline=True, linewidth=1, linecolor='black', categoryorder='array', categoryarray=yearList)
 
     # Add Bar chart
     fig.add_trace(draw_book_bar(counts), row=1, col=2)

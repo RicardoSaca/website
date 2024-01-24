@@ -33,6 +33,8 @@ def book_animation(df):
     booksTotal = pd.merge(numBooks, sumMonthYear, how='outer', on='monthYear')
     #make monthYear datetime
     booksTotal.fillna(0, inplace=True)
+    booksTotal['date'] = pd.to_datetime(booksTotal.monthYear.values, format='%b/%y')
+    booksTotal = booksTotal.sort_values(by='date')
     #Add a running total and difference column
     booksTotal['total'] = booksTotal.title.cumsum()
     booksTotal['diff'] = booksTotal.total.diff()
@@ -51,7 +53,7 @@ def book_animation(df):
     #Update ticks
     ax1.tick_params(axis='x', labelrotation=45)
     ax1.set_xticks(dates)
-    fmt_month = mdates.MonthLocator(interval=2)
+    fmt_month = mdates.MonthLocator(interval=3)
     ax1.xaxis.set_major_locator(fmt_month)
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%b/%y'))
     ax1.format_xdata = mdates.DateFormatter('%b/%y')
