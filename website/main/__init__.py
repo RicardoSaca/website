@@ -5,6 +5,7 @@ from website.extensions import mail
 import json
 import plotly
 import os
+import re
 import traceback
 from website.models import Book, Project
 from website.forms import ContactForm
@@ -69,8 +70,17 @@ def project(projectid):
 @main.route('/bookshelf')
 def bookshelf():
     books = get_books()
+    wish_books = [book for book in books if book.progress == 'Wish']
+    other_books = [book for book in books if book.progress != 'Wish']
+
+    # Sort wish_books by author and then by title
+    wish_books_sorted = sorted(wish_books, key=lambda x: (x.author, get_series_number(x.title), x.title))
+
+    # Combine the sorted lists
+    sorted_books = wish_books_sorted + other_books
+
     years = get_years(books)
-    return render_template("bookshelf.html", books=books, years=years)
+    return render_template("bookshelf.html", books=sorted_books, years=years)
 
 @main.route('/bookshelf_analytics')
 def analytics():
@@ -101,6 +111,10 @@ def favicon():
 def get_books():
     books = Book.query.order_by(Book.date_finished.desc()).all()
     return books
+
+def get_series_number(title):
+    match = re.search(r'\b(\d+)\)', title)
+    return int(match.group(1)) if match else float('inf')
 
 def get_years(books):
     years = []
