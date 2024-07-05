@@ -22,7 +22,8 @@ def draw_book_viz(df):
     sumMonthYear.to_frame().reset_index()
     #Get starting data and ending date
     startYear = min(df['date_finished']) - pd.offsets.DateOffset(months=1)
-    endYear = max(df['date_finished']) + pd.offsets.DateOffset(months=1)
+
+    endYear = max(df['date_finished']) + (pd.offsets.DateOffset(months=0) if (max(df['date_finished']).month == pd.Timestamp.now().month) else pd.offsets.DateOffset(months=1))
     #Off set date by one month
     yearList = pd.date_range(startYear, endYear, freq='MS').strftime(dateformat).tolist()
     #Data frame of each month of interest
