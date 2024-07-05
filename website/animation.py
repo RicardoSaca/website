@@ -1,4 +1,5 @@
 from flask import current_app
+import textwrap
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -9,6 +10,11 @@ def get_books_df():
         con = current_app.config['SQLALCHEMY_DATABASE_URI']
         query = pd.read_sql_query("SELECT id, title, author, date_finished FROM books WHERE books.date_finished IS NOT NULL ORDER BY books.date_finished ASC;", con=con)
         return query
+
+def split_string(text, width):
+    # Split the text using textwrap
+    wrapped_text = textwrap.wrap(text, width)
+    return '\n    '.join(wrapped_text)
 
 def book_animation(df):
     plt.switch_backend('Agg')
@@ -39,6 +45,7 @@ def book_animation(df):
     booksTotal['total'] = booksTotal.title.cumsum()
     booksTotal['diff'] = booksTotal.total.diff()
     booksTotal.fillna(0, inplace=True)
+    booksTotal.reset_index(drop=True, inplace=True)
     plt.rcParams['animation.html'] = 'jshtml'
 
     #Set values for charting
@@ -140,7 +147,8 @@ def book_animation(df):
             else:
                 display =f"Read:"
                 for book in books_read.iterrows():
-                    display += f"\n - {book[1]['title']} by {book[1]['author']}"
+                    display_text = split_string(f"{book[1]['title']} by {book[1]['author']}", 50)
+                    display += f"\n - {display_text}"
                 detail.set_text(display)
         return l, tally, running
 
