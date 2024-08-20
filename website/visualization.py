@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
+import textwrap
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-from website.animation import get_books_df
 from flask import current_app
 
 
@@ -76,6 +76,7 @@ def draw_book_viz(df):
 
 def draw_book_line(booksTotal):
     customdata =  np.stack((booksTotal['diff'], booksTotal['read']), axis=-1)
+    current_app.logger.info(customdata)
     fig = go.Scatter(x=booksTotal.monthYear, y=booksTotal.total, customdata=customdata, mode='lines+markers',
                     hovertemplate="<b>Books finished on %{x}: %{customdata[0]}</b><br> %{customdata[1]}<extra></extra>")
 
@@ -89,11 +90,18 @@ def draw_book_bar(counts):
 
     return fig
 
+def split_string(text, width):
+    # Split the text using textwrap
+    wrapped_text = textwrap.wrap(text, width)
+    return '<br>\u00A0\u00A0\u00A0\u00A0'.join(wrapped_text)
+
 def read(df):
     if df.empty:
         display = f'No books finished'
     else:
         display = "Read: <br>"
         for book in df.iterrows():
-            display += f" - {book[1]['title']} by {book[1]['author']}<br>"
+            display_text = split_string(f"{book[1]['title']} by {book[1]['author']}", 50)
+            display += f" - {display_text}<br>"
+            # display += f" - {book[1]['title']} by {book[1]['author']}<br>"
     return display
