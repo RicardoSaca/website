@@ -1,6 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from website.extensions import login, db
+from sqlalchemy import event
+from sqlalchemy.orm import mapper
+from datetime import date, datetime, timezone
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -24,11 +27,22 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
     author = db.Column(db.String(50))
-    date_finished = db.Column(db.Date)
+    date_finished = db.Column(db.Date, nullable=True)
+    started_at = db.Column(db.Date, nullable=True)
     progress = db.Column(db.String(10))
     blog_url = db.Column(db.String(200))
     notes = db.Column(db.Text)
-    isbn = db.Column(db.Text(10))
+    isbn = db.Column(db.String(10))
+    created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
+
+@event.listens_for(Book, 'before_update')
+def update_dates_on_progress_change(mapper, connection, obj):
+    today = datetime.today().date()
+    if obj.progress in ['Read','Favorite'] and  obj.date_finished is None:
+        obj.date_finished = today
+    if obj.progress == 'Progress' and obj.started_at is None:
+        obj.started_at = today
 
 class Project(db.Model):
     __tablename__ = 'projects'

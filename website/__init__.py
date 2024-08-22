@@ -4,7 +4,10 @@ from flask import Flask, redirect, url_for
 # from flask_sqlalchemy import SQLAlchemy
 from flask_login import current_user
 from flask_admin import AdminIndexView
+from wtforms import SelectField
+from flask_admin.form import Select2Widget
 from flask_admin.contrib.sqla import ModelView
+from sqlalchemy import event
 from config import Config
 
 
@@ -12,13 +15,16 @@ def create_app():
     app = Flask(__name__)
 
     #import extensions
-    from website.extensions import db, login, admin, mail, config
+    from website.extensions import db, login, admin, mail, config, migrate
 
     app.config.from_object(Config)
     app.config.update(Config.mail_settings)
 
     #init db
     db.init_app(app)
+
+    # add migratrion
+    migrate.init_app(app, db)
 
     #init login manager
     login.init_app(app)
@@ -47,7 +53,23 @@ def create_app():
 
     class BookModelView(MyModelView):
         column_searchable_list = ['title', 'author', 'progress']
+        column_list = ['title', 'author', 'progress','started_at','date_finished', 'notes', 'isbn', 'created_at']
         column_filters = ['title', 'author', 'progress']
+        form_columns = ['title', 'author','isbn', 'started_at','date_finished', 'progress', 'notes', 'created_at']
+        form_overrides = {
+            'progress': SelectField
+        }
+        form_args = {
+            'progress': {
+                'choices': [
+                    ('Wish', 'Wishlist'),
+                    ('Progress', 'Progress'),
+                    ('Read', 'Read'),
+                    ('Favorite', 'Favorite')
+                ],
+                'widget': Select2Widget()
+            }
+        }
 
     #Initialize FLASK-Admin and Database
     admin.init_app(app, index_view=MyAdminIndexView())
