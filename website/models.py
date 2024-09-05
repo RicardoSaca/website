@@ -36,6 +36,12 @@ class Book(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
+    @property
+    def duration(self):
+        if self.started_at and self.date_finished:
+            return self.date_finished - self.started_at
+        return None
+
 @event.listens_for(Book, 'before_update')
 def update_dates_on_progress_change(mapper, connection, obj):
     today = datetime.today().date()

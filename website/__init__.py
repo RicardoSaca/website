@@ -53,8 +53,11 @@ def create_app():
 
     class BookModelView(MyModelView):
         column_searchable_list = ['title', 'author', 'progress']
-        column_list = ['title', 'author', 'progress','started_at','date_finished', 'notes', 'isbn', 'created_at']
+        column_list = ['title', 'author', 'progress','started_at','date_finished','duration', 'notes', 'isbn', 'created_at']
         column_filters = ['title', 'author', 'progress']
+        column_formatters = {
+            'duration': lambda v, c, m, p: f'{m.duration.days} days' if m.duration else None
+        }
         form_columns = ['title', 'author','isbn', 'started_at','date_finished', 'progress', 'notes', 'created_at']
         form_overrides = {
             'progress': SelectField
