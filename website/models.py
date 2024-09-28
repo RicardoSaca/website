@@ -32,7 +32,7 @@ class Book(db.Model):
     progress = db.Column(db.String(10))
     blog_url = db.Column(db.String(200))
     notes = db.Column(db.Text)
-    isbn = db.Column(db.String(10))
+    isbn = db.Column(db.String(13))
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
