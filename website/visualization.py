@@ -40,11 +40,7 @@ def draw_book_viz(df):
     booksTotal['diff'] = booksTotal.total.diff()
     booksTotal['read'] = booksTotal.apply(lambda x: read(df[['title', 'author']].loc[df['monthYear']  == f"{x['monthYear']}"]), axis=1)
     booksTotal.fillna(0, inplace=True)
-
-    #Set values for charting
-    dates = pd.to_datetime(booksTotal.monthYear.values, format='%b/%y')
-    x = dates
-    y = booksTotal.total.values
+    booksTotal.reset_index(inplace=True, drop=True)
 
     # Create figure
     fig = make_subplots(rows=1, cols=2, column_widths=[0.8, 0.3])
@@ -76,8 +72,7 @@ def draw_book_viz(df):
 
 def draw_book_line(booksTotal):
     customdata =  np.stack((booksTotal['diff'], booksTotal['read']), axis=-1)
-    current_app.logger.info(customdata)
-    fig = go.Scatter(x=booksTotal.monthYear, y=booksTotal.total, customdata=customdata, mode='lines+markers',
+    fig = go.Scatter(x=booksTotal['monthYear'], y=booksTotal['total'], customdata=customdata, mode='lines+markers',
                     hovertemplate="<b>Books finished on %{x}: %{customdata[0]}</b><br> %{customdata[1]}<extra></extra>")
 
     return fig
@@ -87,7 +82,6 @@ def draw_book_bar(counts):
                 marker_color='#636EFA',
                 text=counts.values, textposition='outside',
                 hovertemplate="<b>Read %{y} Books in %{x}</b><extra></extra>")
-
     return fig
 
 def split_string(text, width):
