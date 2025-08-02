@@ -6,4 +6,5 @@ database/
 .DS_Store
 books.csv
 latest.dump
+latest.dump.*
 migrations/
