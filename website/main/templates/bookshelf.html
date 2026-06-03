@@ -149,7 +149,7 @@
                                 {% if book.notes %}
                                 <a href="#notes-{{book.id}}" class="btn btn-primary" data-bs-toggle="collapse">Notes</a>
                                 <div id="notes-{{book.id}}" class="collapse">
-                                        <p class="card-text mt-3">{% if book.notes %}{{ book.notes }}{% endif %}</p>
+                                        <p class="card-text mt-3">{{ book.notes }}</p>
                                 </div>
                                 {% endif %}
                             </div>
