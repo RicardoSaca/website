@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, send_from_directory, redirect, url_for
+from flask import Blueprint,Response, render_template, request, flash, send_from_directory, redirect, url_for, abort
 from flask_mail import Message
 from flask_sqlalchemy import SQLAlchemy
 from website.extensions import mail
@@ -7,6 +7,7 @@ import plotly
 import os
 import re
 import traceback
+import html
 from website.models import Book, Project
 from website.forms import ContactForm
 from website.animation import get_books_df, book_animation, save_file
@@ -66,6 +67,17 @@ def portfolio():
 def project(projectid):
     pro = get_project(projectid)
     return render_template("project.html", pro=pro)
+
+
+@main.route('/book/<int:book_id>/cover')
+def book_cover(book_id):
+    book = Book.query.get_or_404(book_id)
+    if book.cover_image:
+        resp = Response(book.cover_image, mimetype=book.cover_mimetype or 'image/jpeg')
+    else:
+        resp = Response(generate_placeholder_cover(book.title, book.author), mimetype='image/svg+xml')
+    resp.headers['Cache-Control'] = 'public, max-age=604800'
+    return resp
 
 @main.route('/bookshelf')
 def bookshelf():
@@ -143,3 +155,31 @@ def get_project(projectid):
     pro = Project.query.get(projectid)
     return pro
 
+def generate_placeholder_cover(title, author, width=200, height=300):
+    title = html.escape(title or "Untitled")
+    author = html.escape(author or "Unknown")
+
+    def wrap(text, max_chars=18):
+        words = text.split()
+        lines, current = [], ""
+        for w in words:
+            if len(current) + len(w) + 1 <= max_chars:
+                current = f"{current} {w}".strip()
+            else:
+                lines.append(current)
+                current = w
+        if current:
+            lines.append(current)
+        return lines[:4]  # cap so long titles don't overflow
+
+    title_lines = wrap(title)
+    tspans = "".join(
+        f'<tspan x="50%" dy="{"0" if i == 0 else "1.2em"}">{line}</tspan>'
+        for i, line in enumerate(title_lines)
+    )
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">
+  <rect width="100%" height="100%" fill="#6c757d"/>
+  <text x="50%" y="42%" text-anchor="middle" fill="white" font-family="sans-serif" font-size="16" font-weight="bold">{tspans}</text>
+  <text x="50%" y="88%" text-anchor="middle" fill="#e9ecef" font-family="sans-serif" font-size="12">{author}</text>
+</svg>'''

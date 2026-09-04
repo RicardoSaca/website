@@ -30,8 +30,7 @@
             <div class="card h-100" style="max-width: 540px;">
                 <div class="row g-0 h-100">
                     <div class="col-md-4 cover">
-                        <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg"
-                                class="img-fluid rounded-right" alt="Cover of {{book.title}}">
+                        <img src="{{ url_for('main.book_cover', book_id=book.id) }}" class="img-fluid rounded-start" alt="Cover of {{ book.title }}">
                                 <div class="card-img-overlay px-0 py-0 w-25 h-50">
                                     <i class="fas fa-hourglass-half fa-books pt-3 pb-0 ps-3 pe-0 h-100" aria-hidden="true"></i>
                                 </div>
@@ -63,8 +62,7 @@
             <div class="card h-100" style="max-width: 540px;">
                 <div class="row g-0 h-100">
                     <div class="col-md-4 cover">
-                        <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg"
-                                class="img-fluid rounded-right" alt="Cover of {{book.title}}">
+                        <img src="{{ url_for('main.book_cover', book_id=book.id) }}" class="img-fluid rounded-start" alt="Cover of {{ book.title }}">
                                 <div class="card-img-overlay px-0 py-0 w-25 h-50">
                                     <i class="fas fa-hourglass-half fa-books pt-3 pb-0 ps-3 pe-0 h-100" aria-hidden="true"></i>
                                 </div>
@@ -96,8 +94,7 @@
             <div class="card h-100" style="max-width: 540px;">
                 <div class="row g-0 h-100">
                     <div class="col-md-4 cover">
-                        <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg"
-                        class="img-fluid rounded-start" alt="Cover of {{book.title}}">
+                        <img src="{{ url_for('main.book_cover', book_id=book.id) }}" class="img-fluid rounded-start" alt="Cover of {{ book.title }}">
                             <div class="card-img-overlay px-0 py-0 w-25 h-50">
                                 <i class="fas fa-hourglass-start fa-books pt-3 pb-0 ps-3 pe-0 h-100" aria-hidden="true"></i>
                             </div>
@@ -131,8 +128,7 @@
                 <div class="card h-100" style="max-width: 540px;">
                     <div class="row g-0 h-100">
                         <div class="col-sm-12 col-md-4 cover ">
-                            <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg"
-                                    class="img-fluid rounded-start" alt="Cover of {{book.title}}">
+                                    <img src="{{ url_for('main.book_cover', book_id=book.id) }}" class="img-fluid rounded-start" alt="Cover of {{ book.title }}">
                                     <div class="card-img-overlay px-0 py-0 w-25 h-50">
                                         {% if book.progress == 'Favorite' %}
                                         <i class="fas fa-star fa-books pt-3 pb-0 ps-3 pe-0 h-100" aria-hidden="true"></i>

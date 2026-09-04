@@ -6,10 +6,13 @@ from flask_login import current_user
 from flask_admin import AdminIndexView
 from wtforms import SelectField
 from flask_admin.form import Select2Widget
+from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import event
 from config import Config
-
+from markupsafe import Markup
+from datetime import datetime, timezone
+from .models import fetch_cover_from_openlibrary
 
 def create_app():
     app = Flask(__name__)
@@ -53,15 +56,19 @@ def create_app():
 
     class BookModelView(MyModelView):
         column_searchable_list = ['title', 'author', 'progress']
-        column_list = ['title', 'author', 'progress','started_at','date_finished','duration', 'notes', 'isbn', 'created_at']
+        column_list = ['cover_thumb','title', 'author', 'progress','started_at','date_finished','duration', 'notes', 'isbn', 'created_at']
         column_filters = ['title', 'author', 'progress']
         column_formatters = {
-            'duration': lambda v, c, m, p: f'{m.duration.days} days' if m.duration else None
+            'duration': lambda v, c, m, p: f'{m.duration.days} days' if m.duration else None,
+            'cover_thumb': lambda v, c, model, n: Markup(
+                f'<img src="/book/{model.id}/cover" style="max-height:60px">'
+            ) if model.cover_image else 'No cover'
         }
         form_columns = ['title', 'author','isbn', 'started_at','date_finished', 'progress', 'notes', 'created_at']
         form_overrides = {
             'progress': SelectField
         }
+        # form_excluded_columns = ('cover_image', 'cover_mimetype', 'cover_fetched_at')
         form_args = {
             'progress': {
                 'choices': [
@@ -73,6 +80,16 @@ def create_app():
                 'widget': Select2Widget()
             }
         }
+        @action('refetch_cover', 'Re-fetch cover', 'Re-fetch covers for selected books?')
+        def action_refetch_cover(self, ids):
+            books = Book.query.filter(Book.id.in_(ids)).all()
+            for book in books:
+                content, mimetype = fetch_cover_from_openlibrary(book.isbn)
+                if content:
+                    book.cover_image = content
+                    book.cover_mimetype = mimetype
+                    book.cover_fetched_at = datetime.now(timezone.utc)
+            db.session.commit()
 
     #Initialize FLASK-Admin and Database
     admin.init_app(app, index_view=MyAdminIndexView())

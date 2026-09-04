@@ -4,6 +4,7 @@ from website.extensions import login, db
 from sqlalchemy import event
 from sqlalchemy.orm import mapper
 from datetime import date, datetime, timezone
+import requests
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -21,6 +22,20 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+def fetch_cover_from_openlibrary(isbn):
+    if not isbn:
+        return None, None
+    url = f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
+    try:
+        resp = requests.get(url, timeout=5)
+        resp.raise_for_status()
+    except requests.RequestException:
+        return None, None
+
+    if len(resp.content) < 1000:
+        return None, None
+    return resp.content, resp.headers.get('Content-Type', 'image/jpeg')
+
 class Book(db.Model):
     __tablename__ = 'books'
 
@@ -35,12 +50,24 @@ class Book(db.Model):
     isbn = db.Column(db.String(13))
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
+    cover_image = db.Column(db.LargeBinary, nullable=True)
+    cover_mimetype = db.Column(db.String(50), nullable=True)
+    cover_fetched_at = db.Column(db.DateTime, nullable=True)
 
     @property
     def duration(self):
         if self.started_at and self.date_finished:
             return self.date_finished - self.started_at
         return None
+
+@event.listens_for(Book, 'before_insert')
+def fetch_cover_on_insert(mapper, connection, obj):
+    if obj.isbn and not obj.cover_image:
+        content, mimetype = fetch_cover_from_openlibrary(obj.isbn)
+        if content:
+            obj.cover_image = content
+            obj.cover_mimetype = mimetype
+            obj.cover_fetched_at = datetime.now(timezone.utc)
 
 @event.listens_for(Book, 'before_update')
 def update_dates_on_progress_change(mapper, connection, obj):
