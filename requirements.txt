@@ -29,8 +29,8 @@ narwhals==1.31.0
 numpy==2.2.4
 packaging==24.2
 pandas==2.2.3
-pillow==12.2.0
-pip-upgrader==1.4.15
+pillow==12.3.0
+pip-upgrader==2.4.13
 plotly==6.0.1
 psycopg2==2.9.10
 pyparsing==3.2.1
