@@ -75,7 +75,8 @@ def create_app():
                     ('Wish', 'Wishlist'),
                     ('Progress', 'Progress'),
                     ('Read', 'Read'),
-                    ('Favorite', 'Favorite')
+                    ('Favorite', 'Favorite'),
+                    ('Paused','Paused')
                 ],
                 'widget': Select2Widget()
             }
