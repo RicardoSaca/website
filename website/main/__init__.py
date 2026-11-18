@@ -125,8 +125,8 @@ def get_books():
     return books
 
 def get_series_number(title):
-    match = re.search(r'\b(\d+)\)', title)
-    return int(match.group(1)) if match else float('inf')
+    match = re.search(r',\s*(\d+(?:\.\d+)?)\)', title)
+    return float(match.group(1)) if match else float('inf')
 
 def get_years(books):
     years = []
