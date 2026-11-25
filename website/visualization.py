@@ -63,9 +63,50 @@ def draw_book_viz(df):
                 annotation_text= f"Goal for {year} ({goal})",
                 annotation_position="bottom left", row=1, col=2)
 
+    # Add year slider for the line chart
+    years = sorted(df['year'].dropna().astype(int).unique())   # oldest → newest, left to right
+    is_year = booksTotal['date'].dt.year
+
+    def as_list(s):  # Plotly needs None, not NaN, for gaps
+        return s.astype(object).where(s.notna(), None).tolist()
+
+    steps = [dict(label='All', method='update',
+                args=[{'y': [booksTotal['total'].tolist()]},
+                    {'xaxis.range': [-0.5, len(booksTotal) - 0.5],
+                        'xaxis.dtick': 3,
+                        'yaxis.autorange': True},
+                        [0]])]                                   # [0] = only the line trace
+
+    for yr in years:
+        mask = is_year == yr
+        year_total = booksTotal['title'].where(mask).cumsum()    # 1, 3, 5... within the year; NaN elsewhere
+        start, end = booksTotal.index[mask].min(), booksTotal.index[mask].max()
+        ymax = year_total.max()
+        steps.append(dict(label=str(yr), method='update',
+                        args=[{'y': [as_list(year_total)]},
+                            {'xaxis.range': [start - 0.5, end + 0.5],
+                                'xaxis.dtick': 1,
+                                'yaxis.range': [0, ymax + max(1, ymax * 0.1)]},
+                                [0]]))
+
+    xdom = fig.layout.xaxis.domain
+    fig.update_layout(
+        sliders=[dict(
+            steps=steps, active=0,
+            x=xdom[0], len=xdom[1] - xdom[0],
+            y=-0.15, yanchor='top',                    # below the rotated month labels
+            currentvalue=dict(visible=False),
+            pad=dict(t=0, b=0),
+            ticklen=0, minorticklen=0,
+            font=dict(size=11, color='black'),
+            bgcolor='white', bordercolor='#bbbbbb',
+            borderwidth=1, activebgcolor='#636EFA',
+        )],
+        margin=dict(t=80, b=120),                      # space at the bottom now, not the top
+    )
     #General Fig edits
-    fig.update_layout(title_text="Books Read through the Years", title_x=0.5,  title_font_size=18, title_xanchor="center",
-                    showlegend=False, height=500)
+    fig.update_layout(title_text="Books Read through the Years", title_x=0.5, title_font_size=18,
+                    title_xanchor="center", showlegend=False, height=560)
 
     return fig
 
